@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Notes - NoteHub</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo-section">
+        <img src="../images/college-logo.jpg" alt="College Logo">
+        <div>
+            <h1>NoteHub</h1>
+            <p>Available Notes</p>
+        </div>
+    </div>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../student/dashboard.html">Dashboard</a>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero">
+        <h2>Search & Access Notes</h2>
+
+        <input type="text" id="searchBox"
+               placeholder="Search by subject..."
+               onkeyup="searchNotes()">
+
+        <div class="features" id="notesList">
+
+            <div class="card note">
+                <h3>Computer Science</h3>
+                <p>Semester: 6</p>
+                <p>Study material for Computer Science.</p>
+                <button class="btn">Download</button>
+            </div>
+
+            <div class="card note">
+                <h3>Database Management System</h3>
+                <p>Semester: 6</p>
+                <p>DBMS study notes.</p>
+                <button class="btn">Download</button>
+            </div>
+
+            <div class="card note">
+                <h3>Web Technology</h3>
+                <p>Semester: 6</p>
+                <p>HTML, CSS and JavaScript notes.</p>
+                <button class="btn">Download</button>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Vidya First Grade College, Tumkur</p>
+</footer>
+
+<script>
+function searchNotes() {
+    let input = document.getElementById("searchBox");
+    let filter = input.value.toLowerCase();
+    let notes = document.querySelectorAll(".note");
+
+    notes.forEach(function(note) {
+        let text = note.innerText.toLowerCase();
+
+        if (text.includes(filter)) {
+            note.style.display = "block";
+        } else {
+            note.style.display = "none";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
