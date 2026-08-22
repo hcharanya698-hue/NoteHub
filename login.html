@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - NoteHub</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Student Login - NoteHub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -12,29 +12,55 @@
 <header>
     <div class="logo-section">
         <img src="../images/college-logo.jpg" alt="College Logo">
+
         <div>
             <h1>NoteHub</h1>
             <p>Vidya First Grade College, Tumkur</p>
         </div>
     </div>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="register.html">Register</a>
+        <a href="../admin/login.html">Admin Login</a>
+    </nav>
 </header>
 
 <main>
+
     <section class="hero">
-        <h2>Admin Login</h2>
+
+        <h2>🎓 Student Login</h2>
+
+        <p>
+            Login to access, search and share your academic notes.
+        </p>
 
         <form>
-            <input type="text" placeholder="Admin Username" required><br><br>
+            <input type="email"
+                   placeholder="Enter Email Address"
+                   required>
 
-            <input type="password" placeholder="Password" required><br><br>
+            <br><br>
 
-            <button type="submit" class="btn">Admin Login</button>
+            <input type="password"
+                   placeholder="Enter Password"
+                   required>
+
+            <br><br>
+
+            <button type="submit" class="btn">
+                Login
+            </button>
         </form>
 
         <p>
-            <a href="../index.html">Back to Home</a>
+            Don't have an account?
+            <a href="register.html">Create Account</a>
         </p>
+
     </section>
+
 </main>
 
 <footer>
