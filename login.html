@@ -43,15 +43,22 @@
 
             <br><br>
 
-            <input type="password"
-                   placeholder="Enter Password"
-                   required>
+            <div class="password-box">
+    <input
+        type="password"
+        id="studentPassword"
+        name="password"
+        placeholder="Enter password"
+        required
+    >
 
-            <br><br>
-
-            <button type="submit" class="btn">
-                Login
-            </button>
+    <button
+        type="button"
+        class="password-toggle"
+        onclick="togglePassword()">
+        👁️
+    </button>
+</div>
         </form>
 
         <p>
@@ -66,6 +73,17 @@
 <footer>
     <p>© 2026 Vidya First Grade College, Tumkur</p>
 </footer>
+<script>
+function togglePassword() {
+    const password = document.getElementById("studentPassword");
+
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+}
+</script>
 
 </body>
 </html>
