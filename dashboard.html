@@ -3,67 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - NoteHub</title>
+
+    <title>Admin Dashboard | NoteHub</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-    <div class="logo-section">
-        <img src="../images/college-logo.jpg" alt="College Logo">
-        <div>
-            <h1>NoteHub</h1>
-            <p>Admin Dashboard</p>
-        </div>
-    </div>
+    <!-- Admin Header -->
+    <header class="dashboard-header">
 
-    <nav>
-        <a href="../index.html">Home</a>
-        <a href="login.html">Logout</a>
-    </nav>
-</header>
+        <div class="brand">
+            <img src="college-logo.jpg"
+                 alt="Vidya First Grade College Logo">
 
-<main>
-
-    <section class="hero">
-        <h2>Welcome, Administrator</h2>
-        <p>Manage students and academic notes.</p>
-    </section>
-
-    <section class="features">
-
-        <div class="card">
-            <h3>👨‍🎓 Manage Students</h3>
-            <p>View and manage registered students.</p>
-            <button class="btn">View Students</button>
+            <div>
+                <h1>NoteHub</h1>
+                <p>Vidya First Grade College, Tumkur</p>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>📚 Manage Notes</h3>
-            <p>View and manage uploaded academic notes.</p>
-            <button class="btn">Manage Notes</button>
-        </div>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="#">Students</a>
+            <a href="#">Notes</a>
+            <a href="admin-login.html">Logout</a>
+        </nav>
 
-        <div class="card">
-            <h3>✅ Approve Notes</h3>
-            <p>Review uploaded notes and approve suitable materials.</p>
-            <button class="btn">Approve Notes</button>
-        </div>
+    </header>
 
-        <div class="card">
-            <h3>🗑️ Remove Notes</h3>
-            <p>Remove inappropriate or unwanted notes.</p>
-            <button class="btn">Remove Notes</button>
-        </div>
 
-    </section>
+    <!-- Admin Dashboard -->
+    <main class="student-dashboard">
 
-</main>
+        <!-- Welcome Section -->
+        <section class="welcome-box">
 
-<footer>
-    <p>© 2026 Vidya First Grade College, Tumkur</p>
-</footer>
+            <div>
+                <h2>Welcome, Administrator! 👋</h2>
+
+                <p>
+                    Manage BCA students, academic notes,
+                    approvals, and study resources.
+                </p>
+
+                <span>
+                    BCA Admin Panel • Manage • Approve • Organize
+                </span>
+            </div>
+
+            <div class="welcome-icon">
+                🏫
+            </div>
+
+        </section>
+
+
+        <!-- Four Admin Features -->
+        <section class="features">
+
+            <!-- Manage Students -->
+            <div class="feature-card access-card">
+
+                <div class="card-icon">
+                    👨‍🎓
+                </div>
+
+                <div class="card-content">
+
+                    <h3>Manage Students</h3>
+
+                    <p>
+                        View and manage registered BCA students.
+                    </p>
+
+                    <a href="#"
+                       class="card-button">
+                        Manage Students →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Manage Notes -->
+            <div class="feature-card share-card">
+
+                <div class="card-icon">
+                    📚
+                </div>
+
+                <div class="card-content">
+
+                    <h3>Manage Notes</h3>
+
+                    <p>
+                        Manage BCA notes and academic study materials.
+                    </p>
+
+                    <a href="#"
+                       class="card-button">
+                        Manage Notes →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Approve Notes -->
+            <div class="feature-card search-card">
+
+                <div class="card-icon">
+                    ✅
+                </div>
+
+                <div class="card-content">
+
+                    <h3>Approve Notes</h3>
+
+                    <p>
+                        Review and approve notes shared by students.
+                    </p>
+
+                    <a href="#"
+                       class="card-button">
+                        Approve Notes →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Remove Notes -->
+            <div class="feature-card question-card">
+
+                <div class="card-icon">
+                    🗑️
+                </div>
+
+                <div class="card-content">
+
+                    <h3>Remove Notes</h3>
+
+                    <p>
+                        Remove unwanted or inappropriate academic notes.
+                    </p>
+
+                    <a href="#"
+                       class="card-button">
+                        Remove Notes →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Admin Information -->
+        <section class="dashboard-info">
+
+            <p>
+                🔐 Administrator access — BCA NoteHub Management System
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 NoteHub — Vidya First Grade College, Tumkur.
+        </p>
+
+        <p>
+            BCA Note Sharing and Management System
+        </p>
+
+    </footer>
 
 </body>
 </html>
