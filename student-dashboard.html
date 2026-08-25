@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard | NoteHub</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-    <div class="logo-section">
-        <img src="college-logo.jpg" alt="Vidya First Grade College Logo">
+<header class="dashboard-header">
+    <div class="brand">
+        <img src="college-logo.jpg" alt="Vidya College Logo">
+
         <div>
             <h1>NoteHub</h1>
             <p>Vidya First Grade College, Tumkur</p>
@@ -19,47 +21,98 @@
     </div>
 
     <nav>
-        <a href="index.html">Home</a>
+        <a href="student-dashboard.html">Dashboard</a>
+        <a href="#">Notes</a>
+        <a href="#">Share</a>
+        <a href="#">Search</a>
         <a href="login.html">Logout</a>
     </nav>
 </header>
 
+
 <main class="student-dashboard">
 
-    <section class="page-heading">
-        <h2>Welcome, Student!</h2>
-        <p>Access your academic resources from your student dashboard.</p>
+    <section class="welcome-box">
+        <div>
+            <h2>Welcome, Student! 👋</h2>
+            <p>
+                Access your academic resources from your student dashboard.
+            </p>
+            <span>Learn • Share • Grow • Succeed!</span>
+        </div>
+
+        <div class="welcome-icon">
+            🎓
+        </div>
     </section>
 
-    <section class="feature-card">
 
-        <div class="feature-card">
-            <h3>📚 Access Notes</h3>
-            <p>View and access academic notes.</p>
+    <section class="features">
+
+        <div class="feature-card access-card">
+            <div class="card-icon">📚</div>
+
+            <div class="card-content">
+                <h3>Access Notes</h3>
+                <p>View and access academic notes uploaded by students and faculty.</p>
+
+                <a href="#" class="card-button">
+                    Access Now →
+                </a>
+            </div>
         </div>
 
-        <div class="feature-card">
-            <h3>📤 Share Notes</h3>
-            <p>Share useful notes with other students.</p>
+
+        <div class="feature-card share-card">
+            <div class="card-icon">📤</div>
+
+            <div class="card-content">
+                <h3>Share Notes</h3>
+                <p>Share useful academic notes with other students.</p>
+
+                <a href="#" class="card-button">
+                    Share Notes →
+                </a>
+            </div>
         </div>
 
-        <div class="feature-card">
-            <h3>🔎 Search Notes</h3>
-            <p>Search for notes by subject and semester.</p>
+
+        <div class="feature-card search-card">
+            <div class="card-icon">🔍</div>
+
+            <div class="card-content">
+                <h3>Search Notes</h3>
+                <p>Search for notes by subject, semester, or keyword.</p>
+
+                <a href="#" class="card-button">
+                    Search Notes →
+                </a>
+            </div>
         </div>
 
-        <div class="feature-card">
-            <h3>📝 Previous Year Questions</h3>
-            <p>Access previous year question papers.</p>
-            <a href="previous-year-questions.html">View Questions</a>
+
+        <div class="feature-card question-card">
+            <div class="card-icon">📝</div>
+
+            <div class="card-content">
+                <h3>Previous Year Questions</h3>
+                <p>Access previous year question papers and prepare better.</p>
+
+                <a href="previous-year-questions.html" class="card-button">
+                    View Questions →
+                </a>
+            </div>
         </div>
 
     </section>
 
 </main>
 
+
 <footer>
-    <p>© 2026 Vidya First Grade College, Tumkur</p>
+    <p>
+        © 2026 NoteHub — Vidya First Grade College, Tumkur.
+    </p>
 </footer>
 
 </body>

@@ -502,4 +502,276 @@ footer p {
     .student-dashboard .features {
         grid-template-columns: 1fr;
     }
+}/* ================================
+   STUDENT DASHBOARD
+================================ */
+
+.dashboard-header {
+    background: linear-gradient(135deg, #063b82, #1769d1);
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: white;
+    padding: 5px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.brand p {
+    margin: 4px 0 0;
+    font-size: 14px;
+}
+
+.dashboard-header nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dashboard-header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.student-dashboard {
+    max-width: 1200px;
+    margin: auto;
+    padding: 35px 25px 50px;
+}
+
+
+/* Welcome section */
+
+.welcome-box {
+    background: linear-gradient(135deg, #e3f2fd, #d7ecff);
+    border-radius: 20px;
+    padding: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    box-shadow: 0 8px 25px rgba(0, 80, 160, 0.12);
+}
+
+.welcome-box h2 {
+    color: #063b82;
+    font-size: 42px;
+    margin: 0 0 15px;
+}
+
+.welcome-box p {
+    color: #31516f;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.welcome-box span {
+    color: #1674d1;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.welcome-icon {
+    font-size: 100px;
+}
+
+
+/* Feature cards */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.feature-card {
+    min-height: 220px;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    background: white;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.10);
+    border: 1px solid #e4eaf2;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    min-width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+}
+
+.card-content h3 {
+    margin: 0 0 12px;
+    font-size: 27px;
+}
+
+.card-content p {
+    color: #40566d;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.card-button {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 11px 20px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+
+/* Card colors */
+
+.access-card {
+    background: linear-gradient(135deg, #eef8ff, #dcefff);
+}
+
+.access-card .card-icon {
+    background: #c9e4ff;
+}
+
+.access-card h3 {
+    color: #086dcc;
+}
+
+.access-card .card-button {
+    background: #087ee5;
+}
+
+
+.share-card {
+    background: linear-gradient(135deg, #f5efff, #e8dcff);
+}
+
+.share-card .card-icon {
+    background: #d9c7ff;
+}
+
+.share-card h3 {
+    color: #7140d5;
+}
+
+.share-card .card-button {
+    background: #7040d7;
+}
+
+
+.search-card {
+    background: linear-gradient(135deg, #edfff2, #d9f7df);
+}
+
+.search-card .card-icon {
+    background: #c9f0d1;
+}
+
+.search-card h3 {
+    color: #159447;
+}
+
+.search-card .card-button {
+    background: #16a05a;
+}
+
+
+.question-card {
+    background: linear-gradient(135deg, #fff5e9, #ffe8cc);
+}
+
+.question-card .card-icon {
+    background: #ffe0bd;
+}
+
+.question-card h3 {
+    color: #e96b10;
+}
+
+.question-card .card-button {
+    background: #f47718;
+}
+
+
+/* Footer */
+
+footer {
+    background: #063b82;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-box {
+        padding: 30px;
+    }
+
+    .welcome-box h2 {
+        font-size: 32px;
+    }
+
+    .welcome-icon {
+        font-size: 65px;
+    }
+
+    .dashboard-header {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .feature-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .welcome-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .dashboard-header nav {
+        justify-content: center;
+    }
 }
