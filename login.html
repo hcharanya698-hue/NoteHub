@@ -49,7 +49,7 @@
         </p>
 
 
-        <form action="student-dashboard.html">
+        <form id="studentLoginForm">
 
             <label for="studentEmail">
                 Email Address
@@ -89,8 +89,9 @@
 
 
             <button
-                type="submit"
-                class="login-button">
+                type="button"
+                class="login-button"
+                onclick="studentLogin()">
                 Student Login →
             </button>
 
@@ -118,13 +119,9 @@
     </p>
 
 </footer>
-
-
 <script>
 function togglePassword() {
-
-    const password =
-        document.getElementById("studentPassword");
+    const password = document.getElementById("studentPassword");
 
     if (password.type === "password") {
         password.type = "text";
@@ -132,7 +129,18 @@ function togglePassword() {
         password.type = "password";
     }
 }
-</script>
 
+function studentLogin() {
+    const email = document.getElementById("studentEmail").value.trim();
+    const password = document.getElementById("studentPassword").value;
+
+    if (email === "" || password === "") {
+        alert("Please enter your email and password.");
+        return;
+    }
+
+    window.location.href = "student-dashboard.html";
+}
+</script>
 </body>
 </html>
