@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,136 +12,182 @@
 
 <body>
 
-<header class="dashboard-header">
+    <!-- Header -->
+    <header class="dashboard-header">
 
-    <div class="brand">
+        <div class="brand">
 
-        <img src="college-logo.jpg"
-             alt="Vidya First Grade College Logo">
-
-        <div>
-            <h1>NoteHub</h1>
-            <p>Vidya First Grade College, Tumkur</p>
-        </div>
-
-    </div>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="register.html">Register</a>
-        <a href="admin-login.html">Admin Login</a>
-    </nav>
-
-</header>
-
-
-<main class="login-container">
-
-    <div class="login-card">
-
-        <div class="login-icon">
-            🎓
-        </div>
-
-        <h2>Student Login</h2>
-
-        <p>
-            Login to access your BCA academic resources.
-        </p>
-
-
-        <form id="studentLoginForm">
-
-            <label for="studentEmail">
-                Email Address
-            </label>
-
-            <input
-                type="email"
-                id="studentEmail"
-                name="email"
-                placeholder="Enter email address"
-                required
+            <img
+                src="college-logo.jpg"
+                alt="Vidya First Grade College Logo"
             >
 
+            <div>
+                <h1>NoteHub</h1>
+                <p>Vidya First Grade College, Tumkur</p>
+            </div>
 
-            <label for="studentPassword">
-                Password
-            </label>
+        </div>
 
-            <div class="password-box">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="register.html">Register</a>
+            <a href="admin-login.html">Admin Login</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Student Login -->
+    <main class="login-container">
+
+        <div class="login-card">
+
+            <div class="login-icon">
+                🎓
+            </div>
+
+            <h2>Student Login</h2>
+
+            <p>
+                Login to access your BCA academic resources.
+            </p>
+
+
+            <form id="studentLoginForm">
+
+                <!-- Email -->
+                <label for="studentEmail">
+                    Email Address
+                </label>
 
                 <input
-                    type="password"
-                    id="studentPassword"
-                    name="password"
-                    placeholder="Enter password"
+                    type="email"
+                    id="studentEmail"
+                    name="email"
+                    placeholder="Enter email address"
                     required
                 >
 
+
+                <!-- Password -->
+                <label for="studentPassword">
+                    Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="studentPassword"
+                        name="password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword()"
+                        aria-label="Show or hide password"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+
+                <!-- Student Login Button -->
                 <button
                     type="button"
-                    class="password-toggle"
-                    onclick="togglePassword()">
-                    👁️
+                    class="login-button"
+                    onclick="studentLogin()"
+                >
+                    Student Login →
                 </button>
 
-            </div>
+            </form>
 
 
-            <button
-                type="button"
-                class="login-button"
-                onclick="studentLogin()">
-                Student Login →
-            </button>
+            <p class="register-link">
+                Don't have an account?
+                <a href="register.html">Register here</a>
+            </p>
 
-        </form>
+        </div>
+
+    </main>
 
 
-        <p class="register-link">
-            Don't have an account?
-            <a href="register.html">Register here</a>
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 NoteHub — Vidya First Grade College, Tumkur.
         </p>
 
-    </div>
+        <p>
+            BCA Note Sharing and Management System
+        </p>
 
-</main>
+    </footer>
 
 
-<footer>
+    <!-- JavaScript -->
+    <script>
 
-    <p>
-        © 2026 NoteHub — Vidya First Grade College, Tumkur.
-    </p>
+        /* Show / Hide Password */
+        function togglePassword() {
 
-    <p>
-        BCA Note Sharing and Management System
-    </p>
+            const password =
+                document.getElementById("studentPassword");
 
-</footer>
-<script>
-function togglePassword() {
-    const password = document.getElementById("studentPassword");
+            if (password.type === "password") {
 
-    if (password.type === "password") {
-        password.type = "text";
-    } else {
-        password.type = "password";
-    }
-}
+                password.type = "text";
 
-function studentLogin() {
-    const email = document.getElementById("studentEmail").value.trim();
-    const password = document.getElementById("studentPassword").value;
+            } else {
 
-    if (email === "" || password === "") {
-        alert("Please enter your email and password.");
-        return;
-    }
+                password.type = "password";
 
-    window.location.href = "student-dashboard.html";
-}
-</script>
+            }
+        }
+
+
+        /* Student Login */
+        function studentLogin() {
+
+            const email =
+                document.getElementById("studentEmail").value.trim();
+
+            const password =
+                document.getElementById("studentPassword").value;
+
+
+            /* Check empty fields */
+            if (email === "" || password === "") {
+
+                alert(
+                    "⚠️ Please enter your email and password."
+                );
+
+                return;
+            }
+
+
+            /* Successful login popup */
+            alert(
+                "✅ Login successful!\n\nWelcome to NoteHub."
+            );
+
+
+            /* Open Student Dashboard */
+            window.location.href =
+                "student-dashboard.html";
+        }
+
+    </script>
+
 </body>
+
 </html>
