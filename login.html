@@ -3,79 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Login - NoteHub</title>
+
+    <title>Student Login | NoteHub</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-    <div class="logo-section">
-        <img src="college-logo.jpg" alt="College Logo">
+<header class="dashboard-header">
+
+    <div class="brand">
+
+        <img src="college-logo.jpg"
+             alt="Vidya First Grade College Logo">
 
         <div>
             <h1>NoteHub</h1>
             <p>Vidya First Grade College, Tumkur</p>
         </div>
+
     </div>
 
     <nav>
-        <a href="../index.html">Home</a>
+        <a href="index.html">Home</a>
         <a href="register.html">Register</a>
-        <a href="../admin/login.html">Admin Login</a>
+        <a href="admin-login.html">Admin Login</a>
     </nav>
+
 </header>
 
-<main>
 
-    <section class="hero">
+<main class="login-container">
 
-        <h2>🎓 Student Login</h2>
+    <div class="login-card">
+
+        <div class="login-icon">
+            🎓
+        </div>
+
+        <h2>Student Login</h2>
 
         <p>
-            Login to access, search and share your academic notes.
+            Login to access your BCA academic resources.
         </p>
+
 
         <form action="student-dashboard.html">
-            <input type="email"
-                   placeholder="Enter Email Address"
-                   required>
 
-            <br><br>
+            <label for="studentEmail">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="studentEmail"
+                name="email"
+                placeholder="Enter email address"
+                required
+            >
+
+
+            <label for="studentPassword">
+                Password
+            </label>
 
             <div class="password-box">
-    <input
-        type="password"
-        id="studentPassword"
-        name="password"
-        placeholder="Enter password"
-        required
-    >
 
-    <button
-        type="button"
-        class="password-toggle"
-        onclick="togglePassword()">
-        👁️
-    </button>
-</div>
+                <input
+                    type="password"
+                    id="studentPassword"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    onclick="togglePassword()">
+                    👁️
+                </button>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="login-button">
+                Student Login →
+            </button>
+
         </form>
 
-        <p>
+
+        <p class="register-link">
             Don't have an account?
-            <a href="register.html">Create Account</a>
+            <a href="register.html">Register here</a>
         </p>
 
-    </section>
+    </div>
 
 </main>
 
+
 <footer>
-    <p>© 2026 Vidya First Grade College, Tumkur</p>
+
+    <p>
+        © 2026 NoteHub — Vidya First Grade College, Tumkur.
+    </p>
+
+    <p>
+        BCA Note Sharing and Management System
+    </p>
+
 </footer>
+
+
 <script>
 function togglePassword() {
-    const password = document.getElementById("studentPassword");
+
+    const password =
+        document.getElementById("studentPassword");
 
     if (password.type === "password") {
         password.type = "text";
