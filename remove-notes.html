@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Remove Notes | NoteHub</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 4px;
+        }
+
+        .brand h1 {
+            font-size: 26px;
+        }
+
+        .brand p {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .back-button {
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.6);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h2 {
+            color: #0756b8;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #64748b;
+        }
+
+        .note-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 5px 18px rgba(30,64,175,0.08);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .note-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .note-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            background: #ffecec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .note-info h3 {
+            color: #124b91;
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .note-info p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .remove-button {
+            border: none;
+            background: #dc3545;
+            color: white;
+            padding: 11px 17px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .remove-button:hover {
+            background: #b91c1c;
+        }
+
+        .info-box {
+            margin-top: 25px;
+            background: #eaf4ff;
+            border-left: 5px solid #1769d1;
+            padding: 17px;
+            border-radius: 9px;
+            color: #24527d;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* POPUP */
+
+        .popup {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: white;
+            padding: 16px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+            border-left: 5px solid #dc3545;
+            z-index: 9999;
+
+            opacity: 0;
+            transform: translateX(120%);
+            transition: 0.4s;
+        }
+
+        .popup.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .popup-icon {
+            font-size: 25px;
+        }
+
+        .popup strong {
+            color: #0756b8;
+        }
+
+        .popup p {
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 25px;
+            text-align: center;
+            background: #0b1f3a;
+            color: white;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 5px;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .brand {
+                justify-content: center;
+            }
+
+            .note-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .remove-button {
+                width: 100%;
+            }
+
+            .popup {
+                left: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <img src="../college-logo.jpg" alt="College Logo">
+
+        <div>
+            <h1>NoteHub</h1>
+            <p>Admin Control Panel</p>
+        </div>
+
+    </div>
+
+    <a href="dashboard.html" class="back-button">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="container">
+
+    <section class="page-title">
+
+        <h2>🗑️ Remove Notes</h2>
+
+        <p>
+            Remove notes that should no longer be available on NoteHub.
+        </p>
+
+    </section>
+
+
+    <section id="notesList">
+
+        <div class="note-card">
+
+            <div class="note-info">
+
+                <div class="note-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>C Programming Notes</h3>
+
+                    <p>
+                        First Year • Semester 1<br>
+                        Submitted by: Student 1
+                    </p>
+
+                </div>
+
+            </div>
+
+            <button
+                class="remove-button"
+                onclick="removeNote(this)"
+            >
+                Remove
+            </button>
+
+        </div>
+
+
+        <div class="note-card">
+
+            <div class="note-info">
+
+                <div class="note-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>Python Notes</h3>
+
+                    <p>
+                        Second Year • Semester 3<br>
+                        Submitted by: Student 2
+                    </p>
+
+                </div>
+
+            </div>
+
+            <button
+                class="remove-button"
+                onclick="removeNote(this)"
+            >
+                Remove
+            </button>
+
+        </div>
+
+
+        <div class="note-card">
+
+            <div class="note-info">
+
+                <div class="note-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>Database Management System Notes</h3>
+
+                    <p>
+                        Second Year • Semester 4<br>
+                        Submitted by: Student 3
+                    </p>
+
+                </div>
+
+            </div>
+
+            <button
+                class="remove-button"
+                onclick="removeNote(this)"
+            >
+                Remove
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <div class="info-box">
+
+        <strong>ⓘ Admin Information</strong>
+        <br>
+
+        Select Remove only after checking that the note
+        should no longer be available.
+
+    </div>
+
+</main>
+
+
+<!-- POPUP -->
+
+<div id="popup" class="popup">
+
+    <div class="popup-icon">
+        ⓘ
+    </div>
+
+    <div>
+
+        <strong>Note Removed</strong>
+
+        <p id="popupMessage">
+            The note was removed successfully.
+        </p>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <p>
+        © 2026 NoteHub — Vidya First Grade College, Tumkur
+    </p>
+
+    <p>
+        BCA Note Sharing and Management System
+    </p>
+
+</footer>
+
+
+<script>
+
+    function removeNote(button) {
+
+        const confirmed = confirm(
+            "Are you sure you want to remove this note?"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        const card =
+            button.closest(".note-card");
+
+        card.remove();
+
+        showPopup(
+            "Note removed successfully."
+        );
+    }
+
+
+    function showPopup(message) {
+
+        const popup =
+            document.getElementById("popup");
+
+        document.getElementById("popupMessage")
+            .textContent = message;
+
+        popup.classList.add("show");
+
+        setTimeout(function () {
+
+            popup.classList.remove("show");
+
+        }, 2200);
+    }
+
+</script>
+
+</body>
+
+</html>

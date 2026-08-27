@@ -1,187 +1,482 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Admin Dashboard | NoteHub</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 4px;
+        }
+
+        .brand h1 {
+            font-size: 27px;
+        }
+
+        .brand p {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 10px 17px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .welcome h2 {
+            color: #0756b8;
+            font-size: 31px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* FOUR FEATURES */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 7px 25px rgba(30, 64, 175, 0.10);
+            transition: 0.25s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(30, 64, 175, 0.16);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: #eaf4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 29px;
+            margin-bottom: 18px;
+        }
+
+        .feature-card h3 {
+            color: #124b91;
+            font-size: 21px;
+            margin-bottom: 9px;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-button {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            padding: 11px 18px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .feature-button:hover {
+            opacity: 0.9;
+        }
+
+        /* INFO */
+
+        .info-box {
+            margin-top: 30px;
+            padding: 18px;
+            border-left: 5px solid #1769d1;
+            background: #eaf4ff;
+            border-radius: 9px;
+            color: #24527d;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* POPUP */
+
+        .popup {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: white;
+            padding: 16px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+            border-left: 5px solid #1769d1;
+            z-index: 9999;
+
+            opacity: 0;
+            transform: translateX(120%);
+            transition: 0.4s ease;
+        }
+
+        .popup.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .popup-icon {
+            font-size: 25px;
+        }
+
+        .popup strong {
+            color: #0756b8;
+        }
+
+        .popup p {
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 50px;
+            padding: 25px;
+            text-align: center;
+            background: #0b1f3a;
+            color: white;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 5px;
+            opacity: 0.85;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .brand {
+                justify-content: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .popup {
+                left: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
+
 
 <body>
 
-    <!-- Admin Header -->
-    <header class="dashboard-header">
+    <!-- HEADER -->
+
+    <header>
 
         <div class="brand">
-            <img src="college-logo.jpg"
-                 alt="Vidya First Grade College Logo">
+
+            <img
+                src="../college-logo.jpg"
+                alt="College Logo"
+            >
 
             <div>
+
                 <h1>NoteHub</h1>
-                <p>Vidya First Grade College, Tumkur</p>
+
+                <p>
+                    Admin Control Panel
+                </p>
+
             </div>
+
         </div>
 
-        <nav>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="#">Students</a>
-            <a href="#">Notes</a>
-            <a href="admin-login.html">Logout</a>
-        </nav>
+
+        <a
+            href="admin-login.html"
+            class="logout"
+            onclick="return confirmLogout()"
+        >
+            Logout
+        </a>
 
     </header>
 
 
-    <!-- Admin Dashboard -->
-    <main class="student-dashboard">
+    <!-- MAIN -->
 
-        <!-- Welcome Section -->
-        <section class="welcome-box">
-
-            <div>
-                <h2>Welcome, Administrator! 👋</h2>
-
-                <p>
-                    Manage BCA students, academic notes,
-                    approvals, and study resources.
-                </p>
-
-                <span>
-                    BCA Admin Panel • Manage • Approve • Organize
-                </span>
-            </div>
-
-            <div class="welcome-icon">
-                🏫
-            </div>
-
-        </section>
+    <main class="container">
 
 
-        <!-- Four Admin Features -->
-        <section class="features">
+        <section class="welcome">
 
-            <!-- Manage Students -->
-            <div class="feature-card access-card">
-
-                <div class="card-icon">
-                    👨‍🎓
-                </div>
-
-                <div class="card-content">
-
-                    <h3>Manage Students</h3>
-
-                    <p>
-                        View and manage registered BCA students.
-                    </p>
-
-                    <a href="#"
-                       class="card-button">
-                        Manage Students →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- Manage Notes -->
-            <div class="feature-card share-card">
-
-                <div class="card-icon">
-                    📚
-                </div>
-
-                <div class="card-content">
-
-                    <h3>Manage Notes</h3>
-
-                    <p>
-                        Manage BCA notes and academic study materials.
-                    </p>
-
-                    <a href="#"
-                       class="card-button">
-                        Manage Notes →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- Approve Notes -->
-            <div class="feature-card search-card">
-
-                <div class="card-icon">
-                    ✅
-                </div>
-
-                <div class="card-content">
-
-                    <h3>Approve Notes</h3>
-
-                    <p>
-                        Review and approve notes shared by students.
-                    </p>
-
-                    <a href="#"
-                       class="card-button">
-                        Approve Notes →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- Remove Notes -->
-            <div class="feature-card question-card">
-
-                <div class="card-icon">
-                    🗑️
-                </div>
-
-                <div class="card-content">
-
-                    <h3>Remove Notes</h3>
-
-                    <p>
-                        Remove unwanted or inappropriate academic notes.
-                    </p>
-
-                    <a href="#"
-                       class="card-button">
-                        Remove Notes →
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Admin Information -->
-        <section class="dashboard-info">
+            <h2>
+                Welcome, Administrator 👋
+            </h2>
 
             <p>
-                🔐 Administrator access — BCA NoteHub Management System
+                Manage students and academic notes
+                from the administration panel.
             </p>
 
         </section>
 
+
+        <!-- FOUR FEATURE CARDS -->
+
+        <section class="feature-grid">
+
+
+            <!-- 1. MANAGE STUDENTS -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    👨‍🎓
+                </div>
+
+                <h3>
+                    Manage Students
+                </h3>
+
+                <p>
+                    View and manage students registered
+                    on the NoteHub website.
+                </p>
+
+                <a
+                    href="manage-students.html"
+                    class="feature-button"
+                >
+                    Manage Students →
+                </a>
+
+            </div>
+
+
+            <!-- 2. MANAGE NOTES -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Manage Notes
+                </h3>
+
+                <p>
+                    View and manage academic notes
+                    submitted by students.
+                </p>
+
+                <a
+                    href="manage-notes.html"
+                    class="feature-button"
+                >
+                    Manage Notes →
+                </a>
+
+            </div>
+
+
+            <!-- 3. APPROVE NOTES -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ✅
+                </div>
+
+                <h3>
+                    Approve Notes
+                </h3>
+
+                <p>
+                    Review submitted notes and approve
+                    them before publication.
+                </p>
+
+                <a
+                    href="approve-notes.html"
+                    class="feature-button"
+                >
+                    Approve Notes →
+                </a>
+
+            </div>
+
+
+            <!-- 4. REMOVE NOTES -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🗑️
+                </div>
+
+                <h3>
+                    Remove Notes
+                </h3>
+
+                <p>
+                    Remove notes that are outdated,
+                    incorrect, or inappropriate.
+                </p>
+
+                <a
+                    href="remove-notes.html"
+                    class="feature-button"
+                >
+                    Remove Notes →
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- INFORMATION -->
+
+        <div class="info-box">
+
+            <strong>ⓘ Admin Information</strong>
+
+            <br>
+
+            Use the four sections above to manage
+            students and academic materials.
+
+        </div>
+
     </main>
 
 
-    <!-- Footer -->
+    <!-- POPUP -->
+
+    <div
+        id="popup"
+        class="popup"
+    >
+
+        <div class="popup-icon">
+            ⓘ
+        </div>
+
+        <div>
+
+            <strong>
+                Admin Dashboard
+            </strong>
+
+            <p>
+                Welcome to the NoteHub administration panel.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
     <footer>
 
         <p>
-            © 2026 NoteHub — Vidya First Grade College, Tumkur.
+            © 2026 NoteHub — Vidya First Grade College, Tumkur
         </p>
 
         <p>
@@ -190,5 +485,44 @@
 
     </footer>
 
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function confirmLogout() {
+
+            return confirm(
+                "Are you sure you want to logout?"
+            );
+
+        }
+
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                const popup =
+                    document.getElementById("popup");
+
+                popup.classList.add("show");
+
+
+                setTimeout(
+                    function () {
+
+                        popup.classList.remove("show");
+
+                    },
+                    2200
+                );
+
+            }
+        );
+
+    </script>
+
 </body>
+
 </html>
