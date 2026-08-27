@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Previous Year Questions | NoteHub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 4px;
+        }
+
+        .brand h1 {
+            font-size: 27px;
+        }
+
+        .brand p {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1050px;
+            margin: 40px auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: #0756b8;
+            font-size: 31px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #64748b;
+        }
+
+        /* FILTER */
+
+        .filter-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 7px 25px rgba(30,64,175,0.10);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 28px;
+        }
+
+        .filter-card h3 {
+            color: #0756b8;
+            margin-bottom: 18px;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+        }
+
+        /* QUESTION CARDS */
+
+        .section-title {
+            color: #0756b8;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .question-card {
+            background: white;
+            border: 1px solid #dbeafe;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 15px rgba(30,64,175,0.07);
+        }
+
+        .question-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .question-icon {
+            width: 48px;
+            height: 48px;
+            background: #eaf4ff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .question-info h3 {
+            color: #124b91;
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .question-info p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .view-button,
+        .solution-button {
+            border: none;
+            padding: 9px 13px;
+            border-radius: 7px;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .view-button {
+            background: #1769d1;
+        }
+
+        .solution-button {
+            background: #168a5a;
+        }
+
+        .view-button:hover,
+        .solution-button:hover {
+            opacity: 0.88;
+        }
+
+        /* NOTICE */
+
+        .notice {
+            margin-top: 25px;
+            background: #fff7df;
+            border-left: 5px solid #f2b01e;
+            padding: 17px;
+            border-radius: 10px;
+            color: #735600;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* POPUP */
+
+        .popup {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: white;
+            padding: 17px 22px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+            border-left: 5px solid #1769d1;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateX(120%);
+            transition: 0.4s ease;
+        }
+
+        .popup.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .popup-icon {
+            font-size: 26px;
+        }
+
+        .popup strong {
+            color: #0756b8;
+        }
+
+        .popup p {
+            margin-top: 4px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 45px;
+            background: #0b1f3a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 5px;
+            opacity: 0.85;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .brand {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .question-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .button-group {
+                width: 100%;
+            }
+
+            .view-button,
+            .solution-button {
+                flex: 1;
+                text-align: center;
+            }
+
+            .popup {
+                left: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="brand">
+
+        <img
+            src="college-logo.jpg"
+            alt="Vidya First Grade College Logo"
+        >
+
+        <div>
+
+            <h1>NoteHub</h1>
+
+            <p>
+                Vidya First Grade College, Tumkur
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="student-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="notes.html">
+            Notes
+        </a>
+
+        <a href="share-notes.html">
+            Share
+        </a>
+
+        <a href="search-notes.html">
+            Search
+        </a>
+
+        <a href="previous-questions.html">
+            Questions
+        </a>
+
+        <a href="login.html">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <section class="page-title">
+
+        <h2>📝 Previous Year Questions</h2>
+
+        <p>
+            Practice previous year BCA examination question papers
+            and solutions.
+        </p>
+
+    </section>
+
+
+    <!-- FILTERS -->
+
+    <section class="filter-card">
+
+        <h3>
+            🔎 Find Question Papers
+        </h3>
+
+        <div class="filters">
+
+
+            <div>
+
+                <label for="year">
+                    BCA Year
+                </label>
+
+                <select id="year">
+
+                    <option value="all">
+                        All Years
+                    </option>
+
+                    <option value="First Year">
+                        First Year
+                    </option>
+
+                    <option value="Second Year">
+                        Second Year
+                    </option>
+
+                    <option value="Third Year">
+                        Third Year
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label for="semester">
+                    Semester
+                </label>
+
+                <select id="semester">
+
+                    <option value="all">
+                        All Semesters
+                    </option>
+
+                    <option value="Semester 1">
+                        Semester 1
+                    </option>
+
+                    <option value="Semester 2">
+                        Semester 2
+                    </option>
+
+                    <option value="Semester 3">
+                        Semester 3
+                    </option>
+
+                    <option value="Semester 4">
+                        Semester 4
+                    </option>
+
+                    <option value="Semester 5">
+                        Semester 5
+                    </option>
+
+                    <option value="Semester 6">
+                        Semester 6
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label for="subject">
+                    Subject
+                </label>
+
+                <select id="subject">
+
+                    <option value="all">
+                        All Subjects
+                    </option>
+
+                    <option>C Programming</option>
+                    <option>Principles of Programming Language</option>
+                    <option>Computer Organization and Logical Design</option>
+
+                    <option>Data Structure Using C</option>
+                    <option>Discrete Mathematics</option>
+                    <option>Java</option>
+
+                    <option>Python</option>
+                    <option>Operating System</option>
+                    <option>Database Management System</option>
+                    <option>Mobile Application Development</option>
+
+                    <option>Internet of Things</option>
+                    <option>Computer Network</option>
+                    <option>Analysis &amp; Design of Algorithm</option>
+                    <option>Web Technologies</option>
+
+                    <option>Cryptography and Network Security</option>
+                    <option>Statistical Computing with R</option>
+                    <option>Data Mining and Data Warehousing</option>
+                    <option>Artificial Intelligence</option>
+                    <option>C# with .NET</option>
+                    <option>Software Engineering</option>
+                    <option>Prolog</option>
+
+                    <option>Blockchain Technology</option>
+                    <option>Machine Learning</option>
+                    <option>Natural Language Processing</option>
+                    <option>Data Analytics with Python</option>
+                    <option>Generative AI</option>
+                    <option>Digital Image Processing</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUESTION PAPERS -->
+
+    <h3 class="section-title">
+        📚 Available Question Papers
+    </h3>
+
+
+    <div id="questionList">
+
+
+        <!-- PAPER 1 -->
+
+        <div class="question-card">
+
+            <div class="question-info">
+
+                <div class="question-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>
+                        C Programming — Previous Year Paper
+                    </h3>
+
+                    <p>
+                        First Year • Semester 1 • Question Paper
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="button-group">
+
+                <a href="#" class="view-button">
+                    View Paper
+                </a>
+
+                <button
+                    class="solution-button"
+                    onclick="showSolution()">
+                    Solution
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAPER 2 -->
+
+        <div class="question-card">
+
+            <div class="question-info">
+
+                <div class="question-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>
+                        Data Structure Using C — Previous Year Paper
+                    </h3>
+
+                    <p>
+                        First Year • Semester 2 • Question Paper
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="button-group">
+
+                <a href="#" class="view-button">
+                    View Paper
+                </a>
+
+                <button
+                    class="solution-button"
+                    onclick="showSolution()">
+                    Solution
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAPER 3 -->
+
+        <div class="question-card">
+
+            <div class="question-info">
+
+                <div class="question-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>
+                        Python — Previous Year Paper
+                    </h3>
+
+                    <p>
+                        Second Year • Semester 3 • Question Paper
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="button-group">
+
+                <a href="#" class="view-button">
+                    View Paper
+                </a>
+
+                <button
+                    class="solution-button"
+                    onclick="showSolution()">
+                    Solution
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAPER 4 -->
+
+        <div class="question-card">
+
+            <div class="question-info">
+
+                <div class="question-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>
+                        Database Management System — Previous Year Paper
+                    </h3>
+
+                    <p>
+                        Second Year • Semester 3 • Question Paper
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="button-group">
+
+                <a href="#" class="view-button">
+                    View Paper
+                </a>
+
+                <button
+                    class="solution-button"
+                    onclick="showSolution()">
+                    Solution
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAPER 5 -->
+
+        <div class="question-card">
+
+            <div class="question-info">
+
+                <div class="question-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>
+                        Artificial Intelligence — Previous Year Paper
+                    </h3>
+
+                    <p>
+                        Third Year • Semester 5 • Question Paper
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="button-group">
+
+                <a href="#" class="view-button">
+                    View Paper
+                </a>
+
+                <button
+                    class="solution-button"
+                    onclick="showSolution()">
+                    Solution
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAPER 6 -->
+
+        <div class="question-card">
+
+            <div class="question-info">
+
+                <div class="question-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>
+                        Machine Learning — Previous Year Paper
+                    </h3>
+
+                    <p>
+                        Third Year • Semester 6 • Question Paper
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="button-group">
+
+                <a href="#" class="view-button">
+                    View Paper
+                </a>
+
+                <button
+                    class="solution-button"
+                    onclick="showSolution()">
+                    Solution
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- NOTICE -->
+
+    <div class="notice">
+
+        <strong>ⓘ Important:</strong>
+
+        Question papers and solutions will be added by the
+        administrator. The sample papers above are placeholders
+        until actual files are uploaded.
+
+    </div>
+
+
+</main>
+
+
+<!-- POPUP -->
+
+<div id="popup" class="popup">
+
+    <div class="popup-icon">
+        ⓘ
+    </div>
+
+    <div>
+
+        <strong>
+            Solutions
+        </strong>
+
+        <p id="popupMessage">
+            Solutions will be available soon.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 NoteHub — Vidya First Grade College, Tumkur
+    </p>
+
+    <p>
+        BCA Note Sharing and Management System
+    </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    function showSolution() {
+
+        const popup =
+            document.getElementById("popup");
+
+        popup.classList.add("show");
+
+        setTimeout(function() {
+
+            popup.classList.remove("show");
+
+        }, 2200);
+
+    }
+
+
+    /* Filter question papers */
+
+    document
+        .querySelectorAll("select")
+        .forEach(function(select) {
+
+            select.addEventListener("change", filterPapers);
+
+        });
+
+
+    function filterPapers() {
+
+        const year =
+            document.getElementById("year").value;
+
+        const semester =
+            document.getElementById("semester").value;
+
+        const subject =
+            document.getElementById("subject").value;
+
+
+        const cards =
+            document.querySelectorAll(".question-card");
+
+
+        cards.forEach(function(card) {
+
+            const text =
+                card.innerText.toLowerCase();
+
+
+            const yearMatch =
+                year === "all" ||
+                text.includes(year.toLowerCase());
+
+
+            const semesterMatch =
+                semester === "all" ||
+                text.includes(semester.toLowerCase());
+
+
+            const subjectMatch =
+                subject === "all" ||
+                text.includes(subject.toLowerCase());
+
+
+            if (
+                yearMatch &&
+                semesterMatch &&
+                subjectMatch
+            ) {
+
+                card.style.display = "flex";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
