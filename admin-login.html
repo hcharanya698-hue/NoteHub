@@ -1,82 +1,567 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Admin Login | NoteHub</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eaf4ff, #f7fbff);
+            color: #1e293b;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            object-fit: contain;
+            background: white;
+            padding: 4px;
+        }
+
+        .brand h1 {
+            font-size: 26px;
+        }
+
+        .brand p {
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* LOGIN AREA */
+
+        .login-container {
+            min-height: calc(100vh - 170px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(30, 64, 175, 0.15);
+            border: 1px solid #dbeafe;
+        }
+
+        .login-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #e0efff;
+            border-radius: 50%;
+            font-size: 30px;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            color: #0756b8;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .login-card > p {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 7px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #1769d1;
+            box-shadow: 0 0 0 3px rgba(23,105,209,0.12);
+        }
+
+        /* PASSWORD */
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 50px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* LOGIN BUTTON */
+
+        .login-button {
+            display: block;
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(7,86,184,0.25);
+        }
+
+        .student-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .student-link a {
+            color: #0756b8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* POPUP */
+
+        .popup {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            width: 330px;
+            background: white;
+            padding: 18px 20px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            border-left: 5px solid #1769d1;
+            z-index: 9999;
+
+            opacity: 0;
+            transform: translateX(120%);
+            pointer-events: none;
+            transition: 0.4s ease;
+        }
+
+        .popup.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .popup-icon {
+            font-size: 28px;
+        }
+
+        .popup-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #0756b8;
+        }
+
+        .popup-message {
+            margin-top: 4px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #0b1f3a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 4px;
+            opacity: 0.85;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .brand {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .login-card {
+                padding: 25px 20px;
+            }
+
+            .popup {
+                left: 20px;
+                right: 20px;
+                width: auto;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
 
-<header>
-    <div class="logo-section">
-        <img src="college-logo.jpg" alt="Vidya First Grade College Logo">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <img
+                src="college-logo.jpg"
+                alt="Vidya First Grade College Logo"
+            >
+
+            <div>
+
+                <h1>NoteHub</h1>
+
+                <p>
+                    Vidya First Grade College, Tumkur
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="login.html">
+                Student Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ADMIN LOGIN -->
+
+    <main class="login-container">
+
+        <div class="login-card">
+
+            <div class="login-icon">
+                🔐
+            </div>
+
+            <h2>
+                Admin Login
+            </h2>
+
+            <p>
+                Manage students and BCA academic notes.
+            </p>
+
+
+            <form>
+
+                <!-- Username -->
+
+                <label for="adminUsername">
+                    Admin Username
+                </label>
+
+                <input
+                    type="text"
+                    id="adminUsername"
+                    placeholder="Enter admin username"
+                >
+
+
+                <!-- Password -->
+
+                <label for="adminPassword">
+                    Admin Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter admin password"
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword()">
+                        👁️
+                    </button>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="button"
+                    class="login-button"
+                    onclick="adminLogin()">
+
+                    Admin Login →
+
+                </button>
+
+            </form>
+
+
+            <div class="student-link">
+
+                Are you a student?
+
+                <a href="login.html">
+                    Student Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- POPUP -->
+
+    <div id="popup" class="popup">
+
+        <div class="popup-icon">
+            ⓘ
+        </div>
 
         <div>
-            <h1>NoteHub</h1>
-            <p>Vidya First Grade College, Tumkur</p>
+
+            <div class="popup-title">
+                Login Successful!
+            </div>
+
+            <div id="popupMessage" class="popup-message">
+                Welcome to NoteHub.
+            </div>
+
         </div>
-    </div>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="login.html">Student Login</a>
-    </nav>
-</header>
-
-<main class="login-page">
-
-    <div class="login-box">
-
-        <div class="login-icon">🔐</div>
-
-        <h2>Admin Login</h2>
-
-        <p class="login-subtitle">
-            Administrator Access
-        </p>
-
-        <p class="login-description">
-            Login to manage students, notes and academic resources.
-        </p>
-
-        <form action="dashboard.html">
-
-            <label>Admin Username</label>
-
-            <input
-                type="text"
-                placeholder="Enter admin username"
-                required
-            >
-
-            <label>Admin Password</label>
-
-            <input
-                type="password"
-                placeholder="Enter admin password"
-                required
-            >
-
-            <button type="submit" class="login-button">
-                Admin Login →
-            </button>
-
-        </form>
-
-        <a href="index.html" class="home-link">
-            ← Back to Home
-        </a>
 
     </div>
 
-</main>
 
-<footer>
-    <p>© 2026 Vidya First Grade College, Tumkur</p>
-</footer>
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 NoteHub — Vidya First Grade College, Tumkur.
+        </p>
+
+        <p>
+            BCA Note Sharing and Management System
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* SHOW / HIDE PASSWORD */
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("adminPassword");
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+            } else {
+
+                password.type = "password";
+
+            }
+        }
+
+
+        /* ADMIN LOGIN */
+
+        function adminLogin() {
+
+            const username =
+                document.getElementById("adminUsername")
+                .value
+                .trim();
+
+            const password =
+                document.getElementById("adminPassword")
+                .value;
+
+
+            /* Empty fields */
+
+            if (username === "" || password === "") {
+
+                showPopup(
+                    "Please enter your username and password.",
+                    "⚠️"
+                );
+
+                return;
+
+            }
+
+
+            /* Successful login */
+
+            showPopup(
+                "Welcome to NoteHub Admin Dashboard.",
+                "ⓘ"
+            );
+
+
+            /* Open dashboard automatically */
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 1800);
+
+        }
+
+
+        /* POPUP */
+
+        function showPopup(message, icon) {
+
+            const popup =
+                document.getElementById("popup");
+
+            const popupMessage =
+                document.getElementById("popupMessage");
+
+            const popupIcon =
+                popup.querySelector(".popup-icon");
+
+
+            popupMessage.textContent =
+                message;
+
+            popupIcon.textContent =
+                icon;
+
+
+            popup.classList.add("show");
+
+
+            setTimeout(function() {
+
+                popup.classList.remove("show");
+
+            }, 1500);
+
+        }
+
+    </script>
+
 
 </body>
+
 </html>
