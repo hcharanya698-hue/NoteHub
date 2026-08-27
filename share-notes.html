@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Share Notes | NoteHub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 4px;
+        }
+
+        .brand h1 {
+            font-size: 27px;
+        }
+
+        .brand p {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 40px auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: #0756b8;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #64748b;
+        }
+
+        /* FORM CARD */
+
+        .share-card {
+            background: white;
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 8px 28px rgba(30,64,175,0.12);
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #1769d1;
+            box-shadow: 0 0 0 3px rgba(23,105,209,0.12);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* TWO COLUMNS */
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        /* FILE */
+
+        .file-box {
+            background: #f8fbff;
+            border: 2px dashed #9cc7f5;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .file-box input {
+            border: none;
+            padding: 10px;
+            background: white;
+        }
+
+        .file-icon {
+            font-size: 35px;
+            margin-bottom: 8px;
+        }
+
+        .file-help {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        /* BUTTON */
+
+        .share-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(7,86,184,0.25);
+        }
+
+        /* INFO */
+
+        .info-box {
+            margin-top: 25px;
+            background: #eaf4ff;
+            border-left: 5px solid #1769d1;
+            padding: 17px;
+            border-radius: 9px;
+            color: #24527d;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* POPUP */
+
+        .popup {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: white;
+            padding: 17px 22px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+            border-left: 5px solid #1769d1;
+            z-index: 9999;
+
+            opacity: 0;
+            transform: translateX(120%);
+            transition: 0.4s ease;
+            pointer-events: none;
+        }
+
+        .popup.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .popup-icon {
+            font-size: 26px;
+        }
+
+        .popup strong {
+            color: #0756b8;
+        }
+
+        .popup p {
+            margin-top: 4px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 45px;
+            background: #0b1f3a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 5px;
+            opacity: 0.85;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .brand {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .share-card {
+                padding: 22px;
+            }
+
+            .popup {
+                left: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="brand">
+
+        <img
+            src="college-logo.jpg"
+            alt="Vidya First Grade College Logo"
+        >
+
+        <div>
+
+            <h1>NoteHub</h1>
+
+            <p>
+                Vidya First Grade College, Tumkur
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="student-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="notes.html">
+            Notes
+        </a>
+
+        <a href="share-notes.html">
+            Share
+        </a>
+
+        <a href="search-notes.html">
+            Search
+        </a>
+
+        <a href="login.html">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+    <section class="page-title">
+
+        <h2>📤 Share BCA Notes</h2>
+
+        <p>
+            Share useful academic notes with your BCA classmates.
+        </p>
+
+    </section>
+
+
+    <section class="share-card">
+
+        <form id="shareForm">
+
+
+            <!-- STUDENT NAME -->
+
+            <div class="form-group">
+
+                <label for="studentName">
+                    Student Name
+                </label>
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- YEAR + SEMESTER -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label for="year">
+                        BCA Year
+                    </label>
+
+                    <select id="year" required>
+
+                        <option value="">
+                            Select Year
+                        </option>
+
+                        <option value="First Year">
+                            First Year
+                        </option>
+
+                        <option value="Second Year">
+                            Second Year
+                        </option>
+
+                        <option value="Third Year">
+                            Third Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="semester">
+                        Semester
+                    </label>
+
+                    <select id="semester" required>
+
+                        <option value="">
+                            Select Semester
+                        </option>
+
+                        <option value="Semester 1">
+                            Semester 1
+                        </option>
+
+                        <option value="Semester 2">
+                            Semester 2
+                        </option>
+
+                        <option value="Semester 3">
+                            Semester 3
+                        </option>
+
+                        <option value="Semester 4">
+                            Semester 4
+                        </option>
+
+                        <option value="Semester 5">
+                            Semester 5
+                        </option>
+
+                        <option value="Semester 6">
+                            Semester 6
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUBJECT -->
+
+            <div class="form-group">
+
+                <label for="subject">
+                    Subject
+                </label>
+
+                <select id="subject" required>
+
+                    <option value="">
+                        Select Subject
+                    </option>
+
+                    <option>C Programming</option>
+                    <option>Principles of Programming Language</option>
+                    <option>Computer Organization and Logical Design</option>
+
+                    <option>Data Structure Using C</option>
+                    <option>Discrete Mathematics</option>
+                    <option>Java</option>
+
+                    <option>Python</option>
+                    <option>Operating System</option>
+                    <option>Database Management System</option>
+                    <option>Mobile Application Development</option>
+
+                    <option>Internet of Things</option>
+                    <option>Computer Network</option>
+                    <option>Analysis &amp; Design of Algorithm</option>
+                    <option>Web Technologies</option>
+
+                    <option>Cryptography and Network Security</option>
+                    <option>Statistical Computing with R</option>
+                    <option>Data Mining and Data Warehousing</option>
+                    <option>Artificial Intelligence</option>
+                    <option>C# with .NET</option>
+                    <option>Software Engineering</option>
+                    <option>Prolog</option>
+
+                    <option>Blockchain Technology</option>
+                    <option>Machine Learning</option>
+                    <option>Natural Language Processing</option>
+                    <option>Data Analytics with Python</option>
+                    <option>Generative AI</option>
+                    <option>Digital Image Processing</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <div class="form-group">
+
+                <label for="noteTitle">
+                    Note Title
+                </label>
+
+                <input
+                    type="text"
+                    id="noteTitle"
+                    placeholder="Example: Unit 1 Notes"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label for="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Write a short description about your notes..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- FILE -->
+
+            <div class="form-group">
+
+                <label>
+                    Upload Notes
+                </label>
+
+                <div class="file-box">
+
+                    <div class="file-icon">
+                        📄
+                    </div>
+
+                    <input
+                        type="file"
+                        id="noteFile"
+                        accept=".pdf,.doc,.docx,.ppt,.pptx"
+                        required
+                    >
+
+                    <p class="file-help">
+                        PDF, DOC, DOCX, PPT or PPTX files
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <button
+                type="submit"
+                class="share-button"
+            >
+                📤 Share Notes
+            </button>
+
+
+        </form>
+
+
+        <!-- INFO -->
+
+        <div class="info-box">
+
+            <strong>ⓘ Note:</strong>
+
+            Shared notes can be reviewed by the administrator
+            before being made available to other students.
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- POPUP -->
+
+<div id="popup" class="popup">
+
+    <div class="popup-icon">
+        ⓘ
+    </div>
+
+    <div>
+
+        <strong>
+            Notes Submitted!
+        </strong>
+
+        <p>
+            Your notes have been sent for admin approval.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 NoteHub — Vidya First Grade College, Tumkur
+    </p>
+
+    <p>
+        BCA Note Sharing and Management System
+    </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    document
+        .getElementById("shareForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const popup =
+                document.getElementById("popup");
+
+            popup.classList.add("show");
+
+
+            setTimeout(function() {
+
+                popup.classList.remove("show");
+
+            }, 2500);
+
+        });
+
+</script>
+
+
+</body>
+
+</html>
