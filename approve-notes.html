@@ -1,274 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Approve Notes | NoteHub</title>
 
-    <title>Approve Notes | NoteHub</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fc;
+    color: #1e293b;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fc;
-            color: #1e293b;
-        }
+header {
+    background: linear-gradient(135deg, #0756b8, #1688e8);
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        header {
-            background: linear-gradient(135deg, #0756b8, #1688e8);
-            color: white;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
+.brand img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    background: white;
+    border-radius: 50%;
+    padding: 4px;
+}
 
-        .brand img {
-            width: 55px;
-            height: 55px;
-            object-fit: contain;
-            background: white;
-            border-radius: 50%;
-            padding: 4px;
-        }
+.brand h1 {
+    font-size: 26px;
+}
 
-        .brand h1 {
-            font-size: 26px;
-        }
+.brand p {
+    font-size: 13px;
+    margin-top: 4px;
+}
 
-        .brand p {
-            font-size: 13px;
-            margin-top: 4px;
-        }
+.back {
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
 
-        .back-button {
-            color: white;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.6);
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+}
 
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
-        }
+h2 {
+    color: #0756b8;
+    margin-bottom: 8px;
+}
 
-        .page-title {
-            margin-bottom: 25px;
-        }
+.subtitle {
+    color: #64748b;
+    margin-bottom: 25px;
+}
 
-        .page-title h2 {
-            color: #0756b8;
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
+.note-card {
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+}
 
-        .page-title p {
-            color: #64748b;
-        }
+.note-card h3 {
+    color: #124b91;
+    margin-bottom: 8px;
+}
 
-        .note-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 22px;
-            margin-bottom: 16px;
-            box-shadow: 0 5px 18px rgba(30,64,175,0.08);
+.note-card p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+}
 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
+.status {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #fff3cd;
+    color: #856404;
+    font-size: 12px;
+    font-weight: bold;
+}
 
-        .note-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+.buttons {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+}
 
-        .note-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 12px;
-            background: #fff7df;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-        }
+button {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .note-info h3 {
-            color: #124b91;
-            font-size: 18px;
-            margin-bottom: 6px;
-        }
+.view {
+    background: #1769d1;
+}
 
-        .note-info p {
-            color: #64748b;
-            font-size: 13px;
-            line-height: 1.5;
-        }
+.approve {
+    background: #168a5a;
+}
 
-        .actions {
-            display: flex;
-            gap: 8px;
-        }
+.reject {
+    background: #dc3545;
+}
 
-        .view-button,
-        .approve-button,
-        .reject-button {
-            border: none;
-            color: white;
-            padding: 10px 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.empty {
+    background: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 15px;
+    color: #64748b;
+}
 
-        .view-button {
-            background: #1769d1;
-        }
+.popup {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    background: white;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+    border-left: 5px solid #168a5a;
+    opacity: 0;
+    transform: translateX(120%);
+    transition: 0.4s;
+}
 
-        .approve-button {
-            background: #168a5a;
-        }
+.popup.show {
+    opacity: 1;
+    transform: translateX(0);
+}
 
-        .reject-button {
-            background: #dc3545;
-        }
+.popup strong {
+    color: #0756b8;
+}
 
-        .view-button:hover,
-        .approve-button:hover,
-        .reject-button:hover {
-            opacity: 0.85;
-        }
+.popup p {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 5px;
+}
 
-        .empty-message {
-            background: white;
-            padding: 40px;
-            text-align: center;
-            border-radius: 15px;
-            color: #64748b;
-        }
+footer {
+    margin-top: 50px;
+    padding: 25px;
+    text-align: center;
+    background: #0b1f3a;
+    color: white;
+}
 
-        .info-box {
-            margin-top: 25px;
-            background: #eaf4ff;
-            border-left: 5px solid #1769d1;
-            padding: 17px;
-            border-radius: 9px;
-            color: #24527d;
-            font-size: 14px;
-            line-height: 1.5;
-        }
+footer p {
+    margin: 5px;
+    font-size: 13px;
+}
 
-        /* POPUP */
+@media (max-width: 650px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
 
-        .popup {
-            position: fixed;
-            top: 25px;
-            right: 25px;
-            background: white;
-            padding: 16px 20px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-            border-left: 5px solid #168a5a;
-            z-index: 9999;
+    .buttons {
+        flex-direction: column;
+    }
 
-            opacity: 0;
-            transform: translateX(120%);
-            transition: 0.4s;
-        }
+    button {
+        width: 100%;
+    }
 
-        .popup.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .popup-icon {
-            font-size: 25px;
-        }
-
-        .popup strong {
-            color: #0756b8;
-        }
-
-        .popup p {
-            color: #64748b;
-            font-size: 13px;
-            margin-top: 4px;
-        }
-
-        footer {
-            margin-top: 50px;
-            padding: 25px;
-            text-align: center;
-            background: #0b1f3a;
-            color: white;
-        }
-
-        footer p {
-            font-size: 13px;
-            margin: 5px;
-            opacity: 0.85;
-        }
-
-        @media (max-width: 700px) {
-
-            header {
-                justify-content: center;
-                text-align: center;
-            }
-
-            .brand {
-                justify-content: center;
-            }
-
-            .note-card {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .actions {
-                width: 100%;
-            }
-
-            .view-button,
-            .approve-button,
-            .reject-button {
-                flex: 1;
-                text-align: center;
-            }
-
-            .popup {
-                left: 20px;
-                right: 20px;
-            }
-        }
-    </style>
+    .popup {
+        left: 20px;
+        right: 20px;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -276,17 +210,15 @@
 <header>
 
     <div class="brand">
-
-        <img src="college-logo.jpg" alt="College Logo">
+        <img src="../college-logo.jpg" alt="College Logo">
 
         <div>
             <h1>NoteHub</h1>
             <p>Admin Control Panel</p>
         </div>
-
     </div>
 
-    <a href="dashboard.html" class="back-button">
+    <a href="dashboard.html" class="back">
         ← Dashboard
     </a>
 
@@ -295,289 +227,194 @@
 
 <main class="container">
 
-    <section class="page-title">
+    <h2>✅ Approve Notes</h2>
 
-        <h2>✅ Approve Notes</h2>
+    <p class="subtitle">
+        Review notes submitted by students.
+    </p>
 
-        <p>
-            Review notes submitted by students before making them available.
-        </p>
-
-    </section>
-
-
-    <section id="notesList">
-
-
-        <!-- NOTE 1 -->
-
-        <div class="note-card">
-
-            <div class="note-info">
-
-                <div class="note-icon">
-                    📄
-                </div>
-
-                <div>
-
-                    <h3>C Programming Notes</h3>
-
-                    <p>
-                        First Year • Semester 1<br>
-                        Submitted by: Student 1
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="actions">
-
-                <a href="#" class="view-button">
-                    View
-                </a>
-
-                <button
-                    class="approve-button"
-                    onclick="approveNote(this)"
-                >
-                    Approve
-                </button>
-
-                <button
-                    class="reject-button"
-                    onclick="rejectNote(this)"
-                >
-                    Reject
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- NOTE 2 -->
-
-        <div class="note-card">
-
-            <div class="note-info">
-
-                <div class="note-icon">
-                    📄
-                </div>
-
-                <div>
-
-                    <h3>Python Notes</h3>
-
-                    <p>
-                        Second Year • Semester 3<br>
-                        Submitted by: Student 2
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="actions">
-
-                <a href="#" class="view-button">
-                    View
-                </a>
-
-                <button
-                    class="approve-button"
-                    onclick="approveNote(this)"
-                >
-                    Approve
-                </button>
-
-                <button
-                    class="reject-button"
-                    onclick="rejectNote(this)"
-                >
-                    Reject
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- NOTE 3 -->
-
-        <div class="note-card">
-
-            <div class="note-info">
-
-                <div class="note-icon">
-                    📄
-                </div>
-
-                <div>
-
-                    <h3>Database Management System Notes</h3>
-
-                    <p>
-                        Second Year • Semester 4<br>
-                        Submitted by: Student 3
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="actions">
-
-                <a href="#" class="view-button">
-                    View
-                </a>
-
-                <button
-                    class="approve-button"
-                    onclick="approveNote(this)"
-                >
-                    Approve
-                </button>
-
-                <button
-                    class="reject-button"
-                    onclick="rejectNote(this)"
-                >
-                    Reject
-                </button>
-
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-    <div class="info-box">
-
-        <strong>ⓘ Important</strong>
-        <br>
-
-        Approving or rejecting a note on this page currently
-        changes the sample display only. Permanent approval requires
-        connecting the website to a database.
-
-    </div>
+    <div id="notesContainer"></div>
 
 </main>
 
 
-<!-- POPUP -->
-
 <div id="popup" class="popup">
 
-    <div class="popup-icon">
-        ⓘ
-    </div>
+    <strong id="popupTitle">
+        NoteHub
+    </strong>
 
-    <div>
-
-        <strong id="popupTitle">
-            NoteHub
-        </strong>
-
-        <p id="popupMessage">
-            Note updated.
-        </p>
-
-    </div>
+    <p id="popupMessage">
+        Note updated.
+    </p>
 
 </div>
 
 
 <footer>
 
-    <p>
-        © 2026 NoteHub — Vidya First Grade College, Tumkur
-    </p>
-
-    <p>
-        BCA Note Sharing and Management System
-    </p>
+    <p>© 2026 NoteHub — BCA Note Sharing System</p>
 
 </footer>
 
 
 <script>
 
-    function approveNote(button) {
+function showPopup(title, message) {
 
-        const confirmed = confirm(
-            "Approve this note?"
-        );
+    document.getElementById("popupTitle").textContent = title;
 
-        if (!confirmed) {
-            return;
-        }
+    document.getElementById("popupMessage").textContent = message;
 
-        const card =
-            button.closest(".note-card");
+    document.getElementById("popup").classList.add("show");
 
-        card.remove();
+    setTimeout(function() {
 
-        showPopup(
-            "Note Approved",
-            "The note has been approved."
-        );
+        document.getElementById("popup").classList.remove("show");
 
+    }, 2200);
+}
+
+
+function loadPendingNote() {
+
+    const container =
+        document.getElementById("notesContainer");
+
+    const savedNote =
+        localStorage.getItem("noteHubPendingNote");
+
+    if (!savedNote) {
+
+        container.innerHTML = `
+            <div class="empty">
+                <h3>No Pending Notes</h3>
+                <p>There are no notes waiting for approval.</p>
+            </div>
+        `;
+
+        return;
     }
 
 
-    function rejectNote(button) {
+    const note = JSON.parse(savedNote);
 
-        const confirmed = confirm(
-            "Reject this note?"
-        );
 
-        if (!confirmed) {
-            return;
-        }
+    container.innerHTML = `
 
-        const card =
-            button.closest(".note-card");
+        <div class="note-card">
 
-        card.remove();
+            <h3>📄 ${note.title}</h3>
 
-        showPopup(
-            "Note Rejected",
-            "The note has been rejected."
-        );
+            <p>
+                <strong>Semester:</strong>
+                ${note.semester}
+                <br>
 
+                <strong>Subject:</strong>
+                ${note.subject}
+                <br>
+
+                <strong>File:</strong>
+                ${note.fileName}
+            </p>
+
+            <span class="status">
+                ${note.status}
+            </span>
+
+            <div class="buttons">
+
+                <button
+                    class="view"
+                    onclick="viewNote()">
+                    View
+                </button>
+
+                <button
+                    class="approve"
+                    onclick="approveNote()">
+                    Approve
+                </button>
+
+                <button
+                    class="reject"
+                    onclick="rejectNote()">
+                    Reject
+                </button>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+function viewNote() {
+
+    showPopup(
+        "Note Information",
+        "File: " +
+        JSON.parse(
+            localStorage.getItem("noteHubPendingNote")
+        ).fileName
+    );
+}
+
+
+function approveNote() {
+
+    const savedNote =
+        localStorage.getItem("noteHubPendingNote");
+
+    if (!savedNote) {
+        return;
     }
 
+    const note = JSON.parse(savedNote);
 
-    function showPopup(title, message) {
+    note.status = "Approved";
 
-        const popup =
-            document.getElementById("popup");
+    localStorage.setItem(
+        "noteHubApprovedNote",
+        JSON.stringify(note)
+    );
 
-        document.getElementById("popupTitle")
-            .textContent = title;
+    localStorage.removeItem(
+        "noteHubPendingNote"
+    );
 
-        document.getElementById("popupMessage")
-            .textContent = message;
+    showPopup(
+        "Approved",
+        "The note has been approved successfully."
+    );
 
-        popup.classList.add("show");
+    setTimeout(function() {
+        loadPendingNote();
+    }, 1000);
+}
 
 
-        setTimeout(function() {
+function rejectNote() {
 
-            popup.classList.remove("show");
+    localStorage.removeItem(
+        "noteHubPendingNote"
+    );
 
-        }, 2200);
+    showPopup(
+        "Rejected",
+        "The note has been rejected."
+    );
 
-    }
+    setTimeout(function() {
+        loadPendingNote();
+    }, 1000);
+}
+
+
+loadPendingNote();
 
 </script>
 
 </body>
-
 </html>
