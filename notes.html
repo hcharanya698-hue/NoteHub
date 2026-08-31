@@ -1,395 +1,1102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Access Notes | NoteHub</title>
+    <title>Access Notes | Vidya First Grade College</title>
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f7fc;
-    color: #1e293b;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+        }
 
-header {
-    background: linear-gradient(135deg, #0756b8, #1688e8);
-    color: white;
-    padding: 18px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        /* HEADER */
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
+        header {
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
 
-.brand img {
-    width: 55px;
-    height: 55px;
-    background: white;
-    border-radius: 50%;
-    padding: 4px;
-    object-fit: contain;
-}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-.brand h1 {
-    font-size: 26px;
-}
+        .brand img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
+        }
 
-.brand p {
-    font-size: 13px;
-    margin-top: 4px;
-}
+        .brand h1 {
+            font-size: 23px;
+        }
 
-.back {
-    color: white;
-    text-decoration: none;
-    border: 1px solid white;
-    padding: 10px 15px;
-    border-radius: 8px;
-}
+        .brand p {
+            font-size: 13px;
+            margin-top: 5px;
+        }
 
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 40px auto;
-}
+        .back-button {
+            color: white;
+            text-decoration: none;
+            border: 1px solid white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
 
-h2 {
-    color: #0756b8;
-    margin-bottom: 8px;
-}
+        .back-button:hover {
+            background: rgba(255,255,255,0.15);
+        }
 
-.subtitle {
-    color: #64748b;
-    margin-bottom: 25px;
-}
+        /* MAIN */
 
-.note-card {
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
+        .page-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
 
-.note-info h3 {
-    color: #124b91;
-    margin-bottom: 7px;
-}
+        .page-heading h2 {
+            color: #0756b8;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
 
-.note-info p {
-    color: #64748b;
-    font-size: 13px;
-    line-height: 1.6;
-}
+        .page-heading p {
+            color: #64748b;
+        }
 
-.view-button {
-    border: none;
-    background: #1769d1;
-    color: white;
-    padding: 11px 18px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
+        /* SEMESTER */
 
-.view-button:hover {
-    background: #0756b8;
-}
+        .semester {
+            background: white;
+            margin-bottom: 25px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
 
-.status {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 5px 10px;
-    background: #dcfce7;
-    color: #166534;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: bold;
-}
+        .semester-title {
+            background: linear-gradient(135deg, #0756b8, #1688e8);
+            color: white;
+            padding: 17px 22px;
+            font-size: 20px;
+            font-weight: bold;
+        }
 
-.empty {
-    background: white;
-    padding: 40px;
-    text-align: center;
-    border-radius: 15px;
-    color: #64748b;
-}
+        .subjects {
+            padding: 15px;
+        }
 
-.popup {
-    position: fixed;
-    top: 25px;
-    right: 25px;
-    background: white;
-    padding: 18px 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-    border-left: 5px solid #1769d1;
+        .subject-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
 
-    opacity: 0;
-    transform: translateX(120%);
-    transition: 0.4s;
+            padding: 17px;
+            margin-bottom: 10px;
 
-    z-index: 9999;
-}
+            background: #f8fbff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
 
-.popup.show {
-    opacity: 1;
-    transform: translateX(0);
-}
+        .subject-card:last-child {
+            margin-bottom: 0;
+        }
 
-.popup strong {
-    color: #0756b8;
-}
+        .subject-info h3 {
+            color: #124b91;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
 
-.popup p {
-    color: #64748b;
-    font-size: 13px;
-    margin-top: 5px;
-}
+        .subject-info p {
+            color: #64748b;
+            font-size: 12px;
+        }
 
-footer {
-    margin-top: 50px;
-    padding: 25px;
-    text-align: center;
-    background: #0b1f3a;
-    color: white;
-}
+        .view-button {
+            border: none;
+            background: #1769d1;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+        }
 
-footer p {
-    font-size: 13px;
-    margin: 5px;
-}
+        .view-button:hover {
+            background: #0756b8;
+        }
 
-@media (max-width: 650px) {
+        /* APPROVED NOTE */
 
-    header {
-        flex-direction: column;
-        gap: 15px;
-    }
+        .approved-note {
+            display: none;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #ecfdf5;
+            border: 1px solid #bbf7d0;
+        }
 
-    .note-card {
-        flex-direction: column;
-        align-items: stretch;
-    }
+        .approved-note h3 {
+            color: #166534;
+            margin-bottom: 8px;
+        }
 
-    .view-button {
-        width: 100%;
-    }
+        .approved-note p {
+            color: #365314;
+            font-size: 14px;
+            line-height: 1.7;
+        }
 
-    .popup {
-        left: 20px;
-        right: 20px;
-    }
-}
-</style>
+        .open-file {
+            display: inline-block;
+            margin-top: 12px;
+            background: #168a5a;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* INFORMATION */
+
+        .info-box {
+            margin-top: 30px;
+            padding: 18px;
+            background: #eaf4ff;
+            border-left: 5px solid #1769d1;
+            border-radius: 10px;
+            color: #24527d;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* POPUP */
+
+        .popup {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+
+            min-width: 280px;
+            max-width: 380px;
+
+            background: white;
+            padding: 17px 20px;
+
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+
+            border-left: 5px solid #1769d1;
+
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+
+            opacity: 0;
+            transform: translateX(120%);
+            transition: 0.4s;
+
+            z-index: 9999;
+        }
+
+        .popup.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .popup-icon {
+            font-size: 24px;
+        }
+
+        .popup strong {
+            color: #0756b8;
+        }
+
+        .popup p {
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 50px;
+            padding: 28px;
+            text-align: center;
+            background: #0b1f3a;
+            color: white;
+        }
+
+        footer p {
+            margin: 5px;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .brand {
+                flex-direction: column;
+            }
+
+            .subject-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .view-button {
+                width: 100%;
+            }
+
+            .popup {
+                left: 20px;
+                right: 20px;
+                min-width: auto;
+            }
+        }
+    </style>
 </head>
 
+
 <body>
+
+
+<!-- HEADER -->
 
 <header>
 
     <div class="brand">
 
-        <img src="../college-logo.jpg" alt="College Logo">
+        <!-- COLLEGE LOGO -->
+
+        <img
+            src="../assets/college-logo.jpg"
+            alt="Vidya First Grade College Logo"
+            onerror="this.style.display='none';"
+        >
 
         <div>
-            <h1>NoteHub</h1>
-            <p>Student Notes Portal</p>
+
+            <h1>
+                Vidya First Grade College
+            </h1>
+
+            <p>
+                BCA Notes Sharing and Management System
+            </p>
+
         </div>
 
     </div>
 
-    <a href="notes.html" class="back">
+
+    <a
+        href="../student/dashboard.html"
+        class="back-button"
+    >
         ← Back
     </a>
 
 </header>
 
 
+
+<!-- MAIN -->
+
 <main class="container">
 
-    <h2>📚 Access Notes</h2>
 
-    <p class="subtitle">
-        Approved notes are available below.
-    </p>
+    <div class="page-heading">
 
-    <div id="notesContainer"></div>
+        <h2>
+            📚 Access Notes
+        </h2>
+
+        <p>
+            Select your semester and subject to access academic notes.
+        </p>
+
+    </div>
+
+
+
+    <!-- SEMESTER 1 -->
+
+    <section class="semester">
+
+        <div class="semester-title">
+            Semester 1
+        </div>
+
+        <div class="subjects">
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>
+                        C Programming
+                    </h3>
+
+                    <p>
+                        Programming Principles and Computer Organization
+                    </p>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('C Programming')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>
+                        Principles of Programming Language
+                    </h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Principles of Programming Language')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SEMESTER 2 -->
+
+    <section class="semester">
+
+        <div class="semester-title">
+            Semester 2
+        </div>
+
+        <div class="subjects">
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>
+                        Data Structure Using C
+                    </h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Data Structure Using C')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>
+                        Discrete Mathematics
+                    </h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Discrete Mathematics')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>
+                        Java
+                    </h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Java')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SEMESTER 3 -->
+
+    <section class="semester">
+
+        <div class="semester-title">
+            Semester 3
+        </div>
+
+        <div class="subjects">
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Python</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Python')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Operating System</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Operating System')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Database Management System</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Database Management System')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Mobile Application Development</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Mobile Application Development')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SEMESTER 4 -->
+
+    <section class="semester">
+
+        <div class="semester-title">
+            Semester 4
+        </div>
+
+        <div class="subjects">
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Internet of Things</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Internet of Things')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Computer Networks</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Computer Networks')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Analysis and Design of Algorithms</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Analysis and Design of Algorithms')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Web Technologies</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Web Technologies')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SEMESTER 5 -->
+
+    <section class="semester">
+
+        <div class="semester-title">
+            Semester 5
+        </div>
+
+        <div class="subjects">
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Cryptography and Network Security</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Cryptography and Network Security')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Statistical Computing with R</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Statistical Computing with R')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Data Mining and Data Warehousing</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Data Mining and Data Warehousing')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Artificial Intelligence</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Artificial Intelligence')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>C# with .NET</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('C# with .NET')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Software Engineering</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Software Engineering')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Prolog</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Prolog')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SEMESTER 6 -->
+
+    <section class="semester">
+
+        <div class="semester-title">
+            Semester 6
+        </div>
+
+        <div class="subjects">
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Blockchain Technology</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Blockchain Technology')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Machine Learning</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Machine Learning')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Natural Language Processing</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Natural Language Processing')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Data Analysis with Python</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Data Analysis with Python')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Generative AI</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Generative AI')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <div class="subject-info">
+
+                    <h3>Digital Image Processing</h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="viewSubject('Digital Image Processing')"
+                >
+                    View Notes
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="info-box">
+
+        <strong>ⓘ Note:</strong>
+
+        Only notes approved by the college administrator
+        will be available for students to access.
+
+    </div>
+
 
 </main>
 
 
-<div id="popup" class="popup">
 
-    <strong>NoteHub</strong>
+<!-- POPUP -->
 
-    <p id="popupMessage">
-        Opening note...
-    </p>
+<div
+    id="popup"
+    class="popup"
+>
+
+    <div class="popup-icon">
+        📚
+    </div>
+
+    <div>
+
+        <strong id="popupTitle">
+            Vidya First Grade College
+        </strong>
+
+        <p id="popupMessage">
+            Opening notes...
+        </p>
+
+    </div>
 
 </div>
 
 
+
+<!-- FOOTER -->
+
 <footer>
 
     <p>
-        © 2026 NoteHub — BCA Note Sharing System
+        © 2026 Vidya First Grade College, Tumkur
+    </p>
+
+    <p>
+        BCA Notes Sharing and Management System
     </p>
 
 </footer>
 
 
+
 <script>
 
-function showPopup(message) {
+    /*
+       VIEW NOTES FUNCTION
+    */
 
-    document.getElementById("popupMessage")
-        .textContent = message;
+    function viewSubject(subjectName) {
 
-    document.getElementById("popup")
-        .classList.add("show");
-
-    setTimeout(function() {
-
-        document.getElementById("popup")
-            .classList.remove("show");
-
-    }, 2000);
-}
+        const approvedData =
+            localStorage.getItem("noteHubApprovedNote");
 
 
-function loadApprovedNote() {
+        /*
+           If a student-uploaded note has been
+           approved by the administrator,
+           show its information.
+        */
 
-    const container =
-        document.getElementById("notesContainer");
+        if (approvedData) {
 
-    const savedNote =
-        localStorage.getItem("noteHubApprovedNote");
+            const note =
+                JSON.parse(approvedData);
 
 
-    if (!savedNote) {
+            if (
+                note.subject &&
+                note.subject.toLowerCase()
+                    === subjectName.toLowerCase()
+            ) {
 
-        container.innerHTML = `
-            <div class="empty">
+                showPopup(
+                    "Approved Note",
+                    "Approved note found for " +
+                    subjectName
+                );
 
-                <h3>No Approved Notes</h3>
+                /*
+                   The current browser-only version
+                   does not permanently store the
+                   selected PDF file itself.
+                */
 
-                <p>
-                    No notes have been approved by the admin yet.
-                </p>
+                setTimeout(function() {
 
-            </div>
-        `;
+                    alert(
+                        "Approved note: " +
+                        note.fileName +
+                        "\n\nThe actual PDF will open after file storage/server connection is added."
+                    );
 
-        return;
+                }, 500);
+
+                return;
+            }
+        }
+
+
+        /*
+           No approved note
+        */
+
+        showPopup(
+            "No Notes Available",
+            "No approved notes are available for " +
+            subjectName +
+            " yet."
+        );
+
     }
 
-
-    const note =
-        JSON.parse(savedNote);
-
-
-    container.innerHTML = `
-
-        <div class="note-card">
-
-            <div class="note-info">
-
-                <h3>
-                    📄 ${note.title}
-                </h3>
-
-                <p>
-                    <strong>Semester:</strong>
-                    ${note.semester}
-                    <br>
-
-                    <strong>Subject:</strong>
-                    ${note.subject}
-                    <br>
-
-                    <strong>File:</strong>
-                    ${note.fileName}
-                </p>
-
-                <span class="status">
-                    Approved
-                </span>
-
-            </div>
-
-
-            <button
-                class="view-button"
-                onclick="viewNote()">
-
-                View Notes
-
-            </button>
-
-        </div>
-
-    `;
-}
-
-
-function viewNote() {
-
-    const savedNote =
-        localStorage.getItem("noteHubApprovedNote");
-
-
-    if (!savedNote) {
-
-        showPopup("No approved note found.");
-
-        return;
-    }
-
-
-    const note =
-        JSON.parse(savedNote);
 
 
     /*
-       IMPORTANT:
-       The current upload system saves the
-       file information, but not the actual
-       PDF file itself.
-
-       Therefore this button currently shows
-       the approved file information.
+       POPUP FUNCTION
     */
 
-    showPopup(
-        "Approved: " + note.fileName
-    );
+    function showPopup(title, message) {
 
-}
+        document.getElementById(
+            "popupTitle"
+        ).textContent = title;
 
 
-loadApprovedNote();
+        document.getElementById(
+            "popupMessage"
+        ).textContent = message;
+
+
+        const popup =
+            document.getElementById("popup");
+
+
+        popup.classList.add("show");
+
+
+        setTimeout(function() {
+
+            popup.classList.remove("show");
+
+        }, 2500);
+
+    }
 
 </script>
+
 
 </body>
 </html>
