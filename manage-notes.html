@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Notes | NoteHub</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Manage Notes | Vidya First Grade College
+    </title>
+
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
 
         body {
             font-family: Arial, sans-serif;
@@ -18,394 +30,536 @@
             color: #1e293b;
         }
 
+
+        /* =========================
+           HEADER
+        ========================= */
+
         header {
-            background: linear-gradient(135deg, #0756b8, #1688e8);
+            background: linear-gradient(
+                135deg,
+                #0756b8,
+                #1688e8
+            );
+
             color: white;
+
             padding: 18px 7%;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
+
+            gap: 20px;
         }
+
 
         .brand {
             display: flex;
+
             align-items: center;
+
             gap: 14px;
         }
 
+
         .brand img {
-            width: 55px;
-            height: 55px;
+            width: 65px;
+
+            height: 65px;
+
             object-fit: contain;
+
             background: white;
+
             border-radius: 50%;
+
             padding: 4px;
         }
 
+
         .brand h1 {
-            font-size: 26px;
+            font-size: 25px;
         }
+
 
         .brand p {
             font-size: 13px;
-            margin-top: 4px;
+
+            margin-top: 5px;
         }
 
-        .back-button {
+
+        .back {
             color: white;
+
             text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.6);
-            padding: 10px 16px;
+
+            border: 1px solid white;
+
+            padding: 10px 15px;
+
             border-radius: 8px;
-            font-weight: bold;
         }
+
+
+        .back:hover {
+            background: white;
+
+            color: #0756b8;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
 
         .container {
-            width: 90%;
+            width: 92%;
+
             max-width: 1100px;
-            margin: 40px auto;
+
+            margin: 35px auto;
         }
 
+
         .page-title {
+            text-align: center;
+
             margin-bottom: 25px;
         }
 
+
         .page-title h2 {
             color: #0756b8;
-            font-size: 30px;
+
+            font-size: 28px;
+
             margin-bottom: 8px;
         }
+
 
         .page-title p {
             color: #64748b;
         }
 
-        .note-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 18px rgba(30,64,175,0.08);
 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* =========================
+           NOTE CARD
+        ========================= */
+
+        .notes-container {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(300px, 1fr)
+                );
+
             gap: 20px;
         }
 
+
+        .note-card {
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+
+            border-left: 5px solid #0756b8;
+        }
+
+
+        .note-card h3 {
+            color: #0756b8;
+
+            margin-bottom: 15px;
+
+            font-size: 20px;
+        }
+
+
         .note-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+            margin: 8px 0;
 
-        .note-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
-            background: #eaf4ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 25px;
-        }
-
-        .note-info h3 {
-            color: #124b91;
-            margin-bottom: 6px;
-        }
-
-        .note-info p {
-            color: #64748b;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .view-button,
-        .remove-button {
-            border: none;
-            color: white;
-            padding: 10px 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .view-button {
-            background: #1769d1;
-        }
-
-        .remove-button {
-            background: #dc3545;
-        }
-
-        .view-button:hover,
-        .remove-button:hover {
-            opacity: 0.85;
-        }
-
-        .info-box {
-            margin-top: 25px;
-            background: #eaf4ff;
-            border-left: 5px solid #1769d1;
-            padding: 17px;
-            border-radius: 9px;
-            color: #24527d;
             font-size: 14px;
+
+            color: #475569;
         }
+
+
+        .note-info strong {
+            color: #1e293b;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .pending {
+            background: #fff3cd;
+
+            color: #856404;
+        }
+
+
+        .approved {
+            background: #d1fae5;
+
+            color: #065f46;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .buttons {
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 20px;
+
+            flex-wrap: wrap;
+        }
+
+
+        button {
+            border: none;
+
+            padding: 10px 14px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            font-size: 13px;
+        }
+
+
+        .view-btn {
+            background: #0756b8;
+
+            color: white;
+        }
+
+
+        .view-btn:hover {
+            background: #06458f;
+        }
+
+
+        .approve-btn {
+            background: #168a5a;
+
+            color: white;
+        }
+
+
+        .approve-btn:hover {
+            background: #106c47;
+        }
+
+
+        .remove-btn {
+            background: #dc3545;
+
+            color: white;
+        }
+
+
+        .remove-btn:hover {
+            background: #b52a37;
+        }
+
+
+        /* =========================
+           EMPTY MESSAGE
+        ========================= */
+
+        .empty {
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .empty h3 {
+            color: #0756b8;
+
+            margin-bottom: 10px;
+        }
+
+
+        .empty p {
+            color: #64748b;
+        }
+
+
+        /* =========================
+           POPUP
+        ========================= */
 
         .popup {
             position: fixed;
+
             top: 25px;
+
             right: 25px;
+
+            min-width: 280px;
+
+            max-width: 400px;
+
             background: white;
-            padding: 16px 20px;
+
+            padding: 17px 20px;
+
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-            border-left: 5px solid #1769d1;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.18);
+
+            border-left: 5px solid #168a5a;
+
             opacity: 0;
+
             transform: translateX(120%);
+
             transition: 0.4s;
-            z-index: 9999;
+
+            z-index: 1000;
         }
+
 
         .popup.show {
             opacity: 1;
+
             transform: translateX(0);
         }
 
-        .popup-icon {
-            font-size: 25px;
-        }
 
         .popup strong {
             color: #0756b8;
         }
 
+
         .popup p {
             color: #64748b;
+
             font-size: 13px;
-            margin-top: 4px;
+
+            margin-top: 5px;
         }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             margin-top: 50px;
+
             padding: 25px;
+
             text-align: center;
+
             background: #0b1f3a;
+
             color: white;
         }
 
+
         footer p {
             font-size: 13px;
+
             margin: 5px;
-            opacity: 0.85;
         }
 
+
+        /* =========================
+           MOBILE
+        ========================= */
+
         @media (max-width: 700px) {
+
             header {
-                justify-content: center;
+                flex-direction: column;
+
                 text-align: center;
             }
 
-            .brand {
-                justify-content: center;
+
+            .brand h1 {
+                font-size: 20px;
             }
 
-            .note-card {
+
+            .buttons {
                 flex-direction: column;
-                align-items: stretch;
             }
 
-            .actions {
+
+            button {
                 width: 100%;
             }
 
-            .view-button,
-            .remove-button {
-                flex: 1;
-                text-align: center;
-            }
 
             .popup {
                 left: 20px;
+
                 right: 20px;
+
+                min-width: auto;
             }
+
         }
+
     </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     COLLEGE HEADER
+========================= -->
 
 <header>
 
     <div class="brand">
 
-        <img src="college-logo.jpg" alt="College Logo">
+        <img
+            src="../images/college-logo.jpg"
+            alt="Vidya First Grade College Logo"
+        >
 
         <div>
-            <h1>NoteHub</h1>
-            <p>Admin Control Panel</p>
+
+            <h1>
+                Vidya First Grade College
+            </h1>
+
+            <p>
+                Tumkur, Karnataka
+            </p>
+
         </div>
 
     </div>
 
-    <a href="dashboard.html" class="back-button">
-        ← Dashboard
+
+    <a
+        href="dashboard.html"
+        class="back"
+    >
+        ← Admin Dashboard
     </a>
 
 </header>
 
 
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
 <main class="container">
 
-    <section class="page-title">
 
-        <h2>📚 Manage Notes</h2>
+    <div class="page-title">
+
+        <h2>
+            Manage Notes
+        </h2>
 
         <p>
-            View and manage academic notes submitted to NoteHub.
+            View, approve and remove student-submitted notes
         </p>
 
-    </section>
-
-
-    <section id="notesList">
-
-
-        <div class="note-card">
-
-            <div class="note-info">
-
-                <div class="note-icon">
-                    📄
-                </div>
-
-                <div>
-
-                    <h3>C Programming Notes</h3>
-
-                    <p>
-                        First Year • Semester 1<br>
-                        Submitted by: Student 1
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="actions">
-
-                <a href="#" class="view-button">
-                    View
-                </a>
-
-                <button
-                    class="remove-button"
-                    onclick="removeNote(this)"
-                >
-                    Remove
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="note-card">
-
-            <div class="note-info">
-
-                <div class="note-icon">
-                    📄
-                </div>
-
-                <div>
-
-                    <h3>Python Notes</h3>
-
-                    <p>
-                        Second Year • Semester 3<br>
-                        Submitted by: Student 2
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="actions">
-
-                <a href="#" class="view-button">
-                    View
-                </a>
-
-                <button
-                    class="remove-button"
-                    onclick="removeNote(this)"
-                >
-                    Remove
-                </button>
-
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-    <div class="info-box">
-
-        <strong>ⓘ Admin Information</strong>
-        <br>
-
-        These are sample notes for the dashboard.
-        Real student-uploaded notes will appear here after
-        a database and file-storage system is connected.
-
     </div>
+
+
+    <!-- NOTES WILL APPEAR HERE -->
+
+    <div
+        id="notesContainer"
+        class="notes-container"
+    ></div>
+
 
 </main>
 
 
-<div id="popup" class="popup">
+<!-- =========================
+     POPUP
+========================= -->
 
-    <div class="popup-icon">ⓘ</div>
+<div
+    id="popup"
+    class="popup"
+>
 
-    <div>
+    <strong id="popupTitle">
+        Message
+    </strong>
 
-        <strong>Manage Notes</strong>
-
-        <p id="popupMessage">
-            Note removed successfully.
-        </p>
-
-    </div>
+    <p id="popupMessage">
+        Message
+    </p>
 
 </div>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     <p>
-        © 2026 NoteHub — Vidya First Grade College, Tumkur
+        © 2026 Vidya First Grade College, Tumkur
     </p>
 
     <p>
-        BCA Note Sharing and Management System
+        Academic Notes Sharing and Management System
     </p>
 
 </footer>
@@ -413,44 +567,804 @@
 
 <script>
 
-    function removeNote(button) {
 
-        const confirmed = confirm(
+/* =========================================
+   GET PENDING NOTES
+========================================= */
+
+function getPendingNotes() {
+
+    let notes = [];
+
+
+    /* -------------------------------------
+       Get notes from pendingNotes
+    ------------------------------------- */
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                "pendingNotes"
+            );
+
+
+        if (saved) {
+
+            const parsed =
+                JSON.parse(saved);
+
+
+            if (Array.isArray(parsed)) {
+
+                notes = parsed;
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Error reading pendingNotes",
+            error
+        );
+
+    }
+
+
+    /* -------------------------------------
+       Also check single pending note
+    ------------------------------------- */
+
+    try {
+
+        const single =
+            localStorage.getItem(
+                "noteHubPendingNote"
+            );
+
+
+        if (single) {
+
+            const parsed =
+                JSON.parse(single);
+
+
+            if (parsed) {
+
+                const exists =
+                    notes.some(function(note) {
+
+                        return String(note.id) ===
+                               String(parsed.id);
+
+                    });
+
+
+                if (!exists) {
+
+                    notes.push(parsed);
+
+                }
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Error reading noteHubPendingNote",
+            error
+        );
+
+    }
+
+
+    return notes;
+
+}
+
+
+/* =========================================
+   DISPLAY NOTES
+========================================= */
+
+function displayNotes() {
+
+    const container =
+        document.getElementById(
+            "notesContainer"
+        );
+
+
+    const notes =
+        getPendingNotes();
+
+
+    container.innerHTML = "";
+
+
+    /* -------------------------------------
+       No notes
+    ------------------------------------- */
+
+    if (notes.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    No Notes Available
+                </h3>
+
+                <p>
+                    No student notes have been uploaded yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* -------------------------------------
+       Create cards
+    ------------------------------------- */
+
+    notes.forEach(function(note, index) {
+
+
+        const status =
+            String(
+                note.status || "Pending"
+            ).toLowerCase();
+
+
+        const isApproved =
+            status === "approved" ||
+            note.approved === true ||
+            note.approved === "true";
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "note-card";
+
+
+        card.innerHTML = `
+
+            <h3>
+                📄 ${escapeHTML(
+                    note.title ||
+                    note.fileName ||
+                    "Untitled Note"
+                )}
+            </h3>
+
+
+            <div class="note-info">
+
+                <strong>
+                    Semester:
+                </strong>
+
+                ${escapeHTML(
+                    note.semester ||
+                    "Not specified"
+                )}
+
+            </div>
+
+
+            <div class="note-info">
+
+                <strong>
+                    Subject:
+                </strong>
+
+                ${escapeHTML(
+                    note.subject ||
+                    "Not specified"
+                )}
+
+            </div>
+
+
+            <div class="note-info">
+
+                <strong>
+                    File:
+                </strong>
+
+                ${escapeHTML(
+                    note.fileName ||
+                    "PDF file"
+                )}
+
+            </div>
+
+
+            <div class="note-info">
+
+                <strong>
+                    Uploaded:
+                </strong>
+
+                ${escapeHTML(
+                    note.uploadedDate ||
+                    "Recently"
+                )}
+
+            </div>
+
+
+            <span class="status ${
+                isApproved
+                    ? "approved"
+                    : "pending"
+            }">
+
+                ${
+                    isApproved
+                        ? "Approved"
+                        : "Pending Approval"
+                }
+
+            </span>
+
+
+            <div class="buttons">
+
+                <button
+                    class="view-btn"
+                    onclick="viewPDF(${index})"
+                >
+                    👁 View PDF
+                </button>
+
+
+                ${
+                    !isApproved
+                    ?
+                    `
+                    <button
+                        class="approve-btn"
+                        onclick="approveNote(${index})"
+                    >
+                        ✅ Approve
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+
+                <button
+                    class="remove-btn"
+                    onclick="removeNote(${index})"
+                >
+                    🗑 Remove
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================
+   VIEW PDF
+========================================= */
+
+function viewPDF(index) {
+
+    const notes =
+        getPendingNotes();
+
+
+    const note =
+        notes[index];
+
+
+    if (!note) {
+
+        showPopup(
+            "Error",
+            "The selected note could not be found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       The new share-notes.html
+       stores the actual PDF in fileData.
+    */
+
+    const pdfData =
+        note.fileData ||
+        note.dataURL ||
+        note.dataUrl ||
+        note.fileURL ||
+        note.fileUrl ||
+        note.pdfURL ||
+        note.pdfUrl ||
+        note.url;
+
+
+    if (!pdfData) {
+
+        showPopup(
+            "PDF Not Found",
+            "The note does not contain the actual PDF file."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        const newWindow =
+            window.open(
+                "",
+                "_blank"
+            );
+
+
+        if (!newWindow) {
+
+            showPopup(
+                "Popup Blocked",
+                "Please allow popups in your browser and try again."
+            );
+
+            return;
+
+        }
+
+
+        newWindow.location.href =
+            pdfData;
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        showPopup(
+            "Unable to Open PDF",
+            "The PDF could not be opened."
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   APPROVE NOTE
+========================================= */
+
+function approveNote(index) {
+
+    const notes =
+        getPendingNotes();
+
+
+    const note =
+        notes[index];
+
+
+    if (!note) {
+
+        showPopup(
+            "Error",
+            "The selected note could not be found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Change approval status.
+       IMPORTANT:
+       fileData is NOT removed.
+    */
+
+    note.status =
+        "Approved";
+
+    note.approvalStatus =
+        "Approved";
+
+    note.approved =
+        true;
+
+
+    /*
+       Get existing approved notes.
+    */
+
+    let approvedNotes =
+        [];
+
+
+    try {
+
+        approvedNotes =
+            JSON.parse(
+                localStorage.getItem(
+                    "approvedNotes"
+                )
+            ) || [];
+
+
+        if (!Array.isArray(approvedNotes)) {
+
+            approvedNotes = [];
+
+        }
+
+    } catch (error) {
+
+        approvedNotes = [];
+
+    }
+
+
+    /*
+       Prevent duplicate approval.
+    */
+
+    const existingIndex =
+        approvedNotes.findIndex(
+            function(existingNote) {
+
+                return String(existingNote.id) ===
+                       String(note.id);
+
+            }
+        );
+
+
+    if (existingIndex >= 0) {
+
+        approvedNotes[
+            existingIndex
+        ] = note;
+
+    } else {
+
+        approvedNotes.push(note);
+
+    }
+
+
+    /*
+       Save approved note.
+       The actual PDF fileData stays here.
+    */
+
+    localStorage.setItem(
+        "approvedNotes",
+        JSON.stringify(
+            approvedNotes
+        )
+    );
+
+
+    /*
+       Also save using the second
+       approved key for compatibility.
+    */
+
+    localStorage.setItem(
+        "adminApprovedNotes",
+        JSON.stringify(
+            approvedNotes
+        )
+    );
+
+
+    /*
+       Remove from pending list.
+    */
+
+    removeFromPendingStorage(
+        note.id
+    );
+
+
+    /*
+       Remove single pending note
+       if it is the same note.
+    */
+
+    try {
+
+        const single =
+            JSON.parse(
+                localStorage.getItem(
+                    "noteHubPendingNote"
+                )
+            );
+
+
+        if (
+            single &&
+            String(single.id) ===
+            String(note.id)
+        ) {
+
+            localStorage.removeItem(
+                "noteHubPendingNote"
+            );
+
+        }
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+
+    showPopup(
+        "Note Approved",
+        "The note has been approved successfully."
+    );
+
+
+    displayNotes();
+
+}
+
+
+/* =========================================
+   REMOVE NOTE
+========================================= */
+
+function removeNote(index) {
+
+    const notes =
+        getPendingNotes();
+
+
+    const note =
+        notes[index];
+
+
+    if (!note) {
+
+        return;
+
+    }
+
+
+    const confirmRemove =
+        confirm(
             "Are you sure you want to remove this note?"
         );
 
-        if (!confirmed) {
-            return;
+
+    if (!confirmRemove) {
+
+        return;
+
+    }
+
+
+    removeFromPendingStorage(
+        note.id
+    );
+
+
+    /*
+       Remove single pending note.
+    */
+
+    try {
+
+        const single =
+            JSON.parse(
+                localStorage.getItem(
+                    "noteHubPendingNote"
+                )
+            );
+
+
+        if (
+            single &&
+            String(single.id) ===
+            String(note.id)
+        ) {
+
+            localStorage.removeItem(
+                "noteHubPendingNote"
+            );
+
         }
 
-        const card = button.closest(".note-card");
+    } catch (error) {
 
-        card.remove();
-
-        showPopup("Note removed successfully.");
+        console.log(error);
 
     }
 
 
-    function showPopup(message) {
+    showPopup(
+        "Note Removed",
+        "The note has been removed successfully."
+    );
 
-        const popup =
-            document.getElementById("popup");
 
-        document.getElementById("popupMessage")
-            .textContent = message;
+    displayNotes();
 
-        popup.classList.add("show");
+}
 
-        setTimeout(function() {
 
-            popup.classList.remove("show");
+/* =========================================
+   REMOVE FROM PENDING STORAGE
+========================================= */
 
-        }, 2000);
+function removeFromPendingStorage(id) {
+
+    try {
+
+        let pending =
+            JSON.parse(
+                localStorage.getItem(
+                    "pendingNotes"
+                )
+            ) || [];
+
+
+        if (!Array.isArray(pending)) {
+
+            pending = [];
+
+        }
+
+
+        pending =
+            pending.filter(
+                function(note) {
+
+                    return String(note.id) !==
+                           String(id);
+
+                }
+            );
+
+
+        localStorage.setItem(
+            "pendingNotes",
+            JSON.stringify(
+                pending
+            )
+        );
+
+
+    } catch (error) {
+
+        console.log(
+            "Could not update pendingNotes",
+            error
+        );
 
     }
+
+}
+
+
+/* =========================================
+   POPUP
+========================================= */
+
+function showPopup(
+    title,
+    message
+) {
+
+    document.getElementById(
+        "popupTitle"
+    ).textContent =
+        title;
+
+
+    document.getElementById(
+        "popupMessage"
+    ).textContent =
+        message;
+
+
+    document.getElementById(
+        "popup"
+    ).classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function() {
+
+            document.getElementById(
+                "popup"
+            ).classList.remove(
+                "show"
+            );
+
+        },
+        3000
+    );
+
+}
+
+
+/* =========================================
+   HTML ESCAPE
+========================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================
+   LOAD NOTES WHEN PAGE OPENS
+========================================= */
+
+displayNotes();
 
 </script>
 
+
 </body>
+
 </html>

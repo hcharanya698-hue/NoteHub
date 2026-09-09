@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Share Notes | NoteHub</title>
+    <title>Share Notes | Vidya First Grade College</title>
 
     <style>
         * {
@@ -19,6 +19,7 @@
             color: #1e293b;
         }
 
+        /* COLLEGE HEADER */
         header {
             background: linear-gradient(135deg, #0756b8, #1688e8);
             color: white;
@@ -35,8 +36,8 @@
         }
 
         .brand img {
-            width: 55px;
-            height: 55px;
+            width: 65px;
+            height: 65px;
             object-fit: contain;
             background: white;
             border-radius: 50%;
@@ -44,12 +45,12 @@
         }
 
         .brand h1 {
-            font-size: 26px;
+            font-size: 25px;
         }
 
         .brand p {
             font-size: 13px;
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
         .back {
@@ -60,17 +61,24 @@
             border-radius: 8px;
         }
 
+        .back:hover {
+            background: white;
+            color: #0756b8;
+        }
+
+        /* CONTAINER */
         .container {
             width: 90%;
             max-width: 700px;
             margin: 40px auto;
         }
 
+        /* CARD */
         .card {
             background: white;
             padding: 30px;
             border-radius: 18px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
         }
 
         h2 {
@@ -83,6 +91,7 @@
             margin-bottom: 25px;
         }
 
+        /* FORM */
         label {
             display: block;
             margin-top: 16px;
@@ -105,6 +114,7 @@
             border-color: #1688e8;
         }
 
+        /* UPLOAD BUTTON */
         .upload-button {
             width: 100%;
             margin-top: 25px;
@@ -128,6 +138,7 @@
             color: #64748b;
         }
 
+        /* POPUP */
         .popup {
             position: fixed;
             top: 25px;
@@ -135,12 +146,14 @@
             background: white;
             padding: 16px 20px;
             border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
             border-left: 5px solid #168a5a;
 
             opacity: 0;
             transform: translateX(120%);
             transition: 0.4s;
+
+            z-index: 1000;
         }
 
         .popup.show {
@@ -158,6 +171,7 @@
             margin-top: 5px;
         }
 
+        /* FOOTER */
         footer {
             margin-top: 50px;
             padding: 25px;
@@ -171,15 +185,22 @@
             margin: 5px;
         }
 
+        /* MOBILE */
         @media (max-width: 700px) {
+
             header {
                 flex-direction: column;
                 gap: 15px;
+                text-align: center;
             }
 
             .popup {
                 left: 20px;
                 right: 20px;
+            }
+
+            .card {
+                padding: 22px;
             }
         }
     </style>
@@ -187,25 +208,37 @@
 
 <body>
 
+<!-- =========================
+     COLLEGE HEADER
+========================= -->
+
 <header>
 
     <div class="brand">
 
-        <img src="../college-logo.jpg" alt="College Logo">
+        <!-- COLLEGE LOGO -->
+        <img
+            src="../images/college-logo.jpg"
+            alt="Vidya First Grade College Logo"
+        >
 
         <div>
-            <h1>NoteHub</h1>
-            <p>Share Notes</p>
+            <h1>Vidya First Grade College</h1>
+            <p>Tumkur, Karnataka</p>
         </div>
 
     </div>
 
-    <a href="notes.html" class="back">
+    <a href="dashboard.html" class="back">
         ← Back
     </a>
 
 </header>
 
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
 
 <main class="container">
 
@@ -214,11 +247,13 @@
         <h2>📤 Share Your Notes</h2>
 
         <p class="description">
-            Upload your notes for admin approval.
+            Upload your academic notes for admin approval.
         </p>
 
 
         <form id="notesForm">
+
+            <!-- NOTE TITLE -->
 
             <label for="title">
                 Note Title
@@ -227,10 +262,12 @@
             <input
                 type="text"
                 id="title"
-                placeholder="Example: C Programming Notes"
+                placeholder="Example: Computer Networks Notes"
                 required
             >
 
+
+            <!-- SEMESTER -->
 
             <label for="semester">
                 Semester
@@ -242,15 +279,34 @@
                     Select Semester
                 </option>
 
-                <option>Semester 1</option>
-                <option>Semester 2</option>
-                <option>Semester 3</option>
-                <option>Semester 4</option>
-                <option>Semester 5</option>
-                <option>Semester 6</option>
+                <option value="Semester 1">
+                    Semester 1
+                </option>
+
+                <option value="Semester 2">
+                    Semester 2
+                </option>
+
+                <option value="Semester 3">
+                    Semester 3
+                </option>
+
+                <option value="Semester 4">
+                    Semester 4
+                </option>
+
+                <option value="Semester 5">
+                    Semester 5
+                </option>
+
+                <option value="Semester 6">
+                    Semester 6
+                </option>
 
             </select>
 
+
+            <!-- SUBJECT -->
 
             <label for="subject">
                 Subject
@@ -264,14 +320,16 @@
             >
 
 
+            <!-- PDF FILE -->
+
             <label for="noteFile">
-                Select Notes File
+                Select Notes PDF
             </label>
 
             <input
                 type="file"
                 id="noteFile"
-                accept=".pdf,.doc,.docx"
+                accept="application/pdf,.pdf"
                 required
             >
 
@@ -279,9 +337,11 @@
                 id="fileName"
                 class="file-name"
             >
-                No file selected
+                No PDF selected
             </div>
 
+
+            <!-- UPLOAD -->
 
             <button
                 type="submit"
@@ -297,26 +357,38 @@
 </main>
 
 
+<!-- =========================
+     POPUP
+========================= -->
+
 <div
     id="popup"
     class="popup"
 >
 
-    <strong>
+    <strong id="popupTitle">
         Upload Successful
     </strong>
 
-    <p>
+    <p id="popupMessage">
         Your note has been submitted for admin approval.
     </p>
 
 </div>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     <p>
-        © 2026 NoteHub — BCA Note Sharing System
+        © 2026 Vidya First Grade College, Tumkur
+    </p>
+
+    <p>
+        Academic Notes Sharing and Management System
     </p>
 
 </footer>
@@ -324,75 +396,148 @@
 
 <script>
 
-    const fileInput =
-        document.getElementById("noteFile");
+/* =========================================
+   FILE SELECT
+========================================= */
 
-    const fileName =
-        document.getElementById("fileName");
+const fileInput =
+    document.getElementById("noteFile");
+
+const fileName =
+    document.getElementById("fileName");
 
 
-    fileInput.addEventListener(
-        "change",
-        function () {
+fileInput.addEventListener(
+    "change",
+    function () {
 
-            if (fileInput.files.length > 0) {
+        if (fileInput.files.length > 0) {
 
-                fileName.textContent =
-                    "Selected: " +
-                    fileInput.files[0].name;
+            const file =
+                fileInput.files[0];
 
-            } else {
+            fileName.textContent =
+                "Selected PDF: " + file.name;
 
-                fileName.textContent =
-                    "No file selected";
+        } else {
+
+            fileName.textContent =
+                "No PDF selected";
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   FORM SUBMISSION
+========================================= */
+
+document
+    .getElementById("notesForm")
+    .addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const title =
+                document.getElementById("title").value.trim();
+
+            const semester =
+                document.getElementById("semester").value;
+
+            const subject =
+                document.getElementById("subject").value.trim();
+
+            const file =
+                fileInput.files[0];
+
+
+            /* CHECK FILE */
+
+            if (!file) {
+
+                alert("Please select a PDF file.");
+
+                return;
 
             }
 
-        }
-    );
+
+            /* ONLY PDF */
+
+            if (file.type !== "application/pdf") {
+
+                alert("Please select a PDF file only.");
+
+                return;
+
+            }
 
 
-    document
-        .getElementById("notesForm")
-        .addEventListener(
-            "submit",
-            function (event) {
+            /*
+             ========================================
+             READ THE ACTUAL PDF FILE
+             ========================================
+            */
 
-                event.preventDefault();
-
-                const title =
-                    document.getElementById("title").value;
-
-                const semester =
-                    document.getElementById("semester").value;
-
-                const subject =
-                    document.getElementById("subject").value;
-
-                const file =
-                    fileInput.files[0];
+            const reader =
+                new FileReader();
 
 
-                if (!file) {
-                    alert("Please select a notes file.");
-                    return;
-                }
+            reader.onload = function () {
 
+                /*
+                 The actual PDF is stored here.
+                 This is the important fix.
+                */
 
                 const note = {
 
-                    title: title,
+                    id:
+                        Date.now(),
 
-                    semester: semester,
+                    title:
+                        title,
 
-                    subject: subject,
+                    semester:
+                        semester,
 
-                    fileName: file.name,
+                    subject:
+                        subject,
 
-                    status: "Pending"
+                    fileName:
+                        file.name,
+
+                    fileType:
+                        file.type,
+
+                    fileData:
+                        reader.result,
+
+                    status:
+                        "Pending",
+
+                    approvalStatus:
+                        "Pending",
+
+                    approved:
+                        false,
+
+                    uploadedDate:
+                        new Date().toLocaleString()
 
                 };
 
+
+                /*
+                 ====================================
+                 SAVE PENDING NOTE
+                 ====================================
+                */
 
                 localStorage.setItem(
                     "noteHubPendingNote",
@@ -400,10 +545,53 @@
                 );
 
 
+                /*
+                 Also keep a list of submitted notes.
+                */
+
+                let pendingNotes =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "pendingNotes"
+                        )
+                    ) || [];
+
+
+                pendingNotes.push(note);
+
+
+                localStorage.setItem(
+                    "pendingNotes",
+                    JSON.stringify(pendingNotes)
+                );
+
+
+                /*
+                 ====================================
+                 SHOW SUCCESS POPUP
+                 ====================================
+                */
+
+                document.getElementById(
+                    "popupTitle"
+                ).textContent =
+                    "Upload Successful";
+
+
+                document.getElementById(
+                    "popupMessage"
+                ).textContent =
+                    "Your PDF has been submitted for admin approval.";
+
+
                 document
                     .getElementById("popup")
                     .classList.add("show");
 
+
+                /*
+                 RESET FORM
+                */
 
                 document
                     .getElementById("notesForm")
@@ -411,8 +599,12 @@
 
 
                 fileName.textContent =
-                    "No file selected";
+                    "No PDF selected";
 
+
+                /*
+                 HIDE POPUP
+                */
 
                 setTimeout(function () {
 
@@ -420,10 +612,36 @@
                         .getElementById("popup")
                         .classList.remove("show");
 
-                }, 2500);
+                }, 3000);
 
-            }
-        );
+            };
+
+
+            /*
+             ========================================
+             ERROR READING PDF
+             ========================================
+            */
+
+            reader.onerror = function () {
+
+                alert(
+                    "The PDF could not be read. Please try again."
+                );
+
+            };
+
+
+            /*
+             ========================================
+             READ PDF AS DATA URL
+             ========================================
+            */
+
+            reader.readAsDataURL(file);
+
+        }
+    );
 
 </script>
 
