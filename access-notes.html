@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Access Notes | Vidya First Grade College
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #0756b8,
+                #1688e8
+            );
+
+            color: white;
+
+            padding: 16px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+        }
+
+
+        .brand img {
+            width: 60px;
+
+            height: 60px;
+
+            object-fit: contain;
+
+            background: white;
+
+            border-radius: 50%;
+
+            padding: 4px;
+        }
+
+
+        .brand h1 {
+            font-size: 24px;
+        }
+
+
+        .brand p {
+            font-size: 13px;
+
+            margin-top: 4px;
+        }
+
+
+        .back-button {
+            color: white;
+
+            text-decoration: none;
+
+            border: 1px solid white;
+
+            padding: 10px 16px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+        }
+
+
+        .back-button:hover {
+            background: white;
+
+            color: #0756b8;
+        }
+
+
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 90%;
+
+            max-width: 1100px;
+
+            margin: 40px auto;
+        }
+
+
+        .page-heading {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .page-heading h2 {
+            color: #0756b8;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .page-heading p {
+            color: #64748b;
+
+            font-size: 15px;
+        }
+
+
+
+        /* ================= NOTES GRID ================= */
+
+        #notesContainer {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+
+            gap: 22px;
+        }
+
+
+        .note-card {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 6px 22px
+                rgba(0, 0, 0, 0.08);
+
+            border-top: 5px solid #1688e8;
+        }
+
+
+        .pdf-icon {
+            font-size: 42px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .note-card h3 {
+            color: #0756b8;
+
+            font-size: 21px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .note-details {
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        .note-details strong {
+            color: #334155;
+        }
+
+
+        .approved {
+            display: inline-block;
+
+            margin-top: 12px;
+
+            padding: 5px 11px;
+
+            border-radius: 20px;
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .view-button {
+            width: 100%;
+
+            margin-top: 18px;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0756b8,
+                    #1688e8
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .view-button:hover {
+            opacity: 0.9;
+        }
+
+
+
+        /* ================= EMPTY ================= */
+
+        .empty-box {
+            background: white;
+
+            padding: 45px 25px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            box-shadow:
+                0 6px 22px
+                rgba(0, 0, 0, 0.08);
+
+            grid-column: 1 / -1;
+        }
+
+
+        .empty-box h3 {
+            color: #0756b8;
+
+            margin-bottom: 10px;
+        }
+
+
+        .empty-box p {
+            color: #64748b;
+        }
+
+
+
+        /* ================= POPUP ================= */
+
+        .popup {
+            position: fixed;
+
+            top: 25px;
+
+            right: 25px;
+
+            background: white;
+
+            padding: 16px 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.18);
+
+            border-left: 5px solid #168a5a;
+
+            opacity: 0;
+
+            transform: translateX(120%);
+
+            transition: 0.4s;
+
+            z-index: 9999;
+        }
+
+
+        .popup.show {
+            opacity: 1;
+
+            transform: translateX(0);
+        }
+
+
+        .popup strong {
+            color: #0756b8;
+        }
+
+
+        .popup p {
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            margin-top: 60px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            background: #0b1f3a;
+
+            color: white;
+        }
+
+
+        footer p {
+            font-size: 13px;
+
+            margin: 5px;
+        }
+
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+
+                gap: 15px;
+
+                text-align: center;
+            }
+
+
+            .popup {
+                left: 20px;
+
+                right: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="brand">
+
+            <!-- ACTUAL COLLEGE LOGO -->
+
+            <img
+                src="../images/college-logo.jpg"
+                alt="Vidya First Grade College Logo"
+            >
+
+
+            <div>
+
+                <h1>
+                    Vidya First Grade College
+                </h1>
+
+                <p>
+                    Student Notes Portal
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="dashboard.html"
+            class="back-button"
+        >
+            ← Back
+        </a>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+
+        <div class="page-heading">
+
+            <h2>
+                📚 Access Notes
+            </h2>
+
+            <p>
+                View notes approved by the Admin
+            </p>
+
+        </div>
+
+
+        <div id="notesContainer"></div>
+
+
+    </main>
+
+
+
+    <!-- ================= POPUP ================= -->
+
+    <div
+        id="popup"
+        class="popup"
+    >
+
+        <strong>
+            Notes
+        </strong>
+
+        <p id="popupMessage">
+            Opening notes...
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Vidya First Grade College
+        </p>
+
+        <p>
+            BCA Student Notes Management System
+        </p>
+
+    </footer>
+
+
+
+    <script>
+
+
+        /* ==================================================
+           ELEMENTS
+        ================================================== */
+
+        const notesContainer =
+            document.getElementById(
+                "notesContainer"
+            );
+
+
+        const popup =
+            document.getElementById(
+                "popup"
+            );
+
+
+        const popupMessage =
+            document.getElementById(
+                "popupMessage"
+            );
+
+
+
+        /* ==================================================
+           POPUP MESSAGE
+        ================================================== */
+
+        function showPopup(message) {
+
+            popupMessage.textContent =
+                message;
+
+            popup.classList.add("show");
+
+
+            setTimeout(function () {
+
+                popup.classList.remove("show");
+
+            }, 2500);
+
+        }
+
+
+
+        /* ==================================================
+           GET APPROVED NOTES
+        ================================================== */
+
+        function getApprovedNotes() {
+
+            const savedNotes =
+                localStorage.getItem(
+                    "approvedNotes"
+                );
+
+
+            if (!savedNotes) {
+
+                return [];
+
+            }
+
+
+            try {
+
+                const notes =
+                    JSON.parse(savedNotes);
+
+
+                if (
+                    Array.isArray(notes)
+                ) {
+
+                    return notes;
+
+                }
+
+
+                return [];
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Unable to read approved notes:",
+                    error
+                );
+
+                return [];
+
+            }
+
+        }
+
+
+
+        /* ==================================================
+           DISPLAY APPROVED NOTES
+        ================================================== */
+
+        function displayNotes() {
+
+            const notes =
+                getApprovedNotes();
+
+
+            notesContainer.innerHTML =
+                "";
+
+
+            if (notes.length === 0) {
+
+                notesContainer.innerHTML = `
+
+                    <div class="empty-box">
+
+                        <h3>
+                            📂 No Approved Notes
+                        </h3>
+
+                        <p>
+                            Admin has not approved any notes yet.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            notes.forEach(
+                function(note, index) {
+
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "note-card";
+
+
+
+                    card.innerHTML = `
+
+                        <div class="pdf-icon">
+                            📄
+                        </div>
+
+
+                        <h3>
+                            ${escapeHTML(
+                                note.title ||
+                                "Notes"
+                            )}
+                        </h3>
+
+
+                        <div class="note-details">
+
+                            <strong>
+                                Subject:
+                            </strong>
+
+                            ${escapeHTML(
+                                note.subject ||
+                                "Not specified"
+                            )}
+
+                            <br>
+
+
+                            <strong>
+                                Semester:
+                            </strong>
+
+                            ${escapeHTML(
+                                note.semester ||
+                                "Not specified"
+                            )}
+
+                            <br>
+
+
+                            <strong>
+                                File:
+                            </strong>
+
+                            ${escapeHTML(
+                                note.fileName ||
+                                "PDF"
+                            )}
+
+                        </div>
+
+
+                        <span class="approved">
+                            ✓ Approved
+                        </span>
+
+
+                        <button
+                            class="view-button"
+                            onclick="viewNote(${index})"
+                        >
+                            👁 View Notes
+                        </button>
+
+                    `;
+
+
+                    notesContainer.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* ==================================================
+           VIEW ACTUAL UPLOADED PDF
+        ================================================== */
+
+        function viewNote(index) {
+
+
+            const notes =
+                getApprovedNotes();
+
+
+            const note =
+                notes[index];
+
+
+            if (!note) {
+
+                alert(
+                    "The selected note was not found."
+                );
+
+                return;
+
+            }
+
+
+
+            /*
+                VERY IMPORTANT:
+
+                The Admin Accept code must save
+                the actual uploaded PDF in:
+
+                note.fileData
+            */
+
+
+            if (!note.fileData) {
+
+                alert(
+                    "The PDF data is missing. Please upload this note again using the updated Share Notes module."
+                );
+
+                return;
+
+            }
+
+
+
+            try {
+
+
+                showPopup(
+                    "Opening " +
+                    (
+                        note.fileName ||
+                        "Notes"
+                    )
+                );
+
+
+
+                /*
+                    Example:
+
+                    data:application/pdf;base64,AAAA...
+
+                    We need only the Base64 part.
+                */
+
+                const commaPosition =
+                    note.fileData.indexOf(",");
+
+
+                if (
+                    commaPosition === -1
+                ) {
+
+                    throw new Error(
+                        "Invalid PDF data"
+                    );
+
+                }
+
+
+                const base64Data =
+                    note.fileData.substring(
+                        commaPosition + 1
+                    );
+
+
+
+                /*
+                    Convert Base64
+                    into binary data.
+                */
+
+                const binaryString =
+                    atob(base64Data);
+
+
+                const length =
+                    binaryString.length;
+
+
+                const bytes =
+                    new Uint8Array(
+                        length
+                    );
+
+
+                for (
+                    let i = 0;
+                    i < length;
+                    i++
+                ) {
+
+                    bytes[i] =
+                        binaryString.charCodeAt(i);
+
+                }
+
+
+
+                /*
+                    Create the actual PDF Blob.
+                */
+
+                const pdfBlob =
+                    new Blob(
+                        [bytes],
+                        {
+                            type:
+                                note.fileType ||
+                                "application/pdf"
+                        }
+                    );
+
+
+
+                /*
+                    Create temporary PDF URL.
+                */
+
+                const pdfURL =
+                    URL.createObjectURL(
+                        pdfBlob
+                    );
+
+
+
+                /*
+                    Open the ACTUAL uploaded
+                    PDF in a new browser tab.
+                */
+
+                const newTab =
+                    window.open(
+                        pdfURL,
+                        "_blank"
+                    );
+
+
+
+                /*
+                    If browser blocks popup.
+                */
+
+                if (!newTab) {
+
+                    alert(
+                        "Please allow pop-ups for this website to view the notes."
+                    );
+
+
+                    URL.revokeObjectURL(
+                        pdfURL
+                    );
+
+
+                    return;
+
+                }
+
+
+
+                /*
+                    Keep the URL alive long enough
+                    for the PDF viewer to load.
+                */
+
+                setTimeout(
+                    function () {
+
+                        URL.revokeObjectURL(
+                            pdfURL
+                        );
+
+                    },
+                    60000
+                );
+
+
+            }
+            catch (error) {
+
+
+                console.error(
+                    "PDF opening error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to open the uploaded PDF."
+                );
+
+            }
+
+        }
+
+
+
+        /* ==================================================
+           PROTECT TEXT DISPLAY
+        ================================================== */
+
+        function escapeHTML(value) {
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.textContent =
+                value;
+
+
+            return element.innerHTML;
+
+        }
+
+
+
+        /* ==================================================
+           LOAD PAGE
+        ================================================== */
+
+        displayNotes();
+
+
+    </script>
+
+
+</body>
+
+</html>
