@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Approve Notes | NoteHub</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+    Approve Notes | Vidya First Grade College
+</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,10 +26,12 @@ body {
     color: #1e293b;
 }
 
+/* HEADER */
+
 header {
     background: linear-gradient(135deg, #0756b8, #1688e8);
     color: white;
-    padding: 18px 7%;
+    padding: 16px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,8 +44,8 @@ header {
 }
 
 .brand img {
-    width: 55px;
-    height: 55px;
+    width: 65px;
+    height: 65px;
     object-fit: contain;
     background: white;
     border-radius: 50%;
@@ -43,7 +53,7 @@ header {
 }
 
 .brand h1 {
-    font-size: 26px;
+    font-size: 24px;
 }
 
 .brand p {
@@ -59,100 +69,167 @@ header {
     border-radius: 8px;
 }
 
+/* MAIN */
+
 .container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 40px auto;
+    width: 92%;
+    max-width: 1100px;
+    margin: 35px auto;
 }
 
-h2 {
+.title {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.title h2 {
     color: #0756b8;
     margin-bottom: 8px;
 }
 
-.subtitle {
+.title p {
     color: #64748b;
-    margin-bottom: 25px;
+}
+
+/* NOTES */
+
+.notes-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 .note-card {
     background: white;
     padding: 22px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.08);
+
+    border-left: 5px solid #0756b8;
+}
+
+.note-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
 }
 
 .note-card h3 {
-    color: #124b91;
-    margin-bottom: 8px;
+    color: #0756b8;
+    margin-bottom: 15px;
+    word-break: break-word;
 }
 
-.note-card p {
-    color: #64748b;
+.info {
+    margin: 8px 0;
     font-size: 14px;
-    line-height: 1.7;
+    color: #64748b;
 }
+
+.info strong {
+    color: #1e293b;
+}
+
+/* STATUS */
 
 .status {
     display: inline-block;
     margin-top: 10px;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 20px;
-    background: #fff3cd;
-    color: #856404;
     font-size: 12px;
     font-weight: bold;
 }
 
+.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* BUTTONS */
+
 .buttons {
-    margin-top: 18px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 button {
     border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
+    padding: 10px 14px;
+    border-radius: 7px;
     cursor: pointer;
+    font-weight: bold;
 }
 
-.view {
-    background: #1769d1;
+.view-btn {
+    background: #0756b8;
+    color: white;
 }
 
-.approve {
+.accept-btn {
     background: #168a5a;
+    color: white;
 }
 
-.reject {
+.reject-btn {
     background: #dc3545;
+    color: white;
 }
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* EMPTY */
 
 .empty {
     background: white;
-    padding: 40px;
+    padding: 45px;
+    border-radius: 14px;
     text-align: center;
-    border-radius: 15px;
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.08);
+}
+
+.empty h3 {
+    color: #0756b8;
+    margin-bottom: 10px;
+}
+
+.empty p {
     color: #64748b;
 }
+
+/* POPUP */
 
 .popup {
     position: fixed;
     top: 25px;
     right: 25px;
+
+    min-width: 280px;
+
     background: white;
-    padding: 16px 20px;
+
+    padding: 17px 20px;
+
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.18);
+
     border-left: 5px solid #168a5a;
+
     opacity: 0;
+
     transform: translateX(120%);
+
     transition: 0.4s;
+
+    z-index: 1000;
 }
 
 .popup.show {
@@ -170,6 +247,8 @@ button {
     margin-top: 5px;
 }
 
+/* FOOTER */
+
 footer {
     margin-top: 50px;
     padding: 25px;
@@ -179,14 +258,18 @@ footer {
 }
 
 footer p {
-    margin: 5px;
     font-size: 13px;
+    margin: 5px;
 }
 
-@media (max-width: 650px) {
+/* MOBILE */
+
+@media(max-width:700px) {
+
     header {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
+        text-align: center;
     }
 
     .buttons {
@@ -200,221 +283,957 @@ footer p {
     .popup {
         left: 20px;
         right: 20px;
+        min-width: auto;
     }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- HEADER -->
 
 <header>
 
     <div class="brand">
-        <img src="../college-logo.jpg" alt="College Logo">
+
+        <img
+            src="../images/college-logo.jpg"
+            alt="Vidya First Grade College Logo"
+        >
 
         <div>
-            <h1>NoteHub</h1>
-            <p>Admin Control Panel</p>
+
+            <h1>
+                Vidya First Grade College
+            </h1>
+
+            <p>
+                Notes Approval Module
+            </p>
+
         </div>
+
     </div>
 
-    <a href="dashboard.html" class="back">
-        ← Dashboard
+
+    <a
+        href="dashboard.html"
+        class="back"
+    >
+        ← Admin Dashboard
     </a>
 
 </header>
 
 
+<!-- MAIN -->
+
 <main class="container">
 
-    <h2>✅ Approve Notes</h2>
+    <div class="title">
 
-    <p class="subtitle">
-        Review notes submitted by students.
-    </p>
+        <h2>
+            📋 Approve Notes
+        </h2>
 
-    <div id="notesContainer"></div>
+        <p>
+            Review student notes before accepting or rejecting them.
+        </p>
+
+    </div>
+
+
+    <div
+        id="notesGrid"
+        class="notes-grid"
+    ></div>
 
 </main>
 
 
-<div id="popup" class="popup">
+<!-- POPUP -->
+
+<div
+    id="popup"
+    class="popup"
+>
 
     <strong id="popupTitle">
-        NoteHub
+        Message
     </strong>
 
     <p id="popupMessage">
-        Note updated.
+        Message
     </p>
 
 </div>
 
 
+<!-- FOOTER -->
+
 <footer>
 
-    <p>© 2026 NoteHub — BCA Note Sharing System</p>
+    <p>
+        © 2026 Vidya First Grade College, Tumkur
+    </p>
+
+    <p>
+        Academic Notes Approval System
+    </p>
 
 </footer>
 
 
 <script>
 
-function showPopup(title, message) {
+/* ==========================================
+   GET PENDING NOTES
+========================================== */
 
-    document.getElementById("popupTitle").textContent = title;
+function getPendingNotes() {
 
-    document.getElementById("popupMessage").textContent = message;
-
-    document.getElementById("popup").classList.add("show");
-
-    setTimeout(function() {
-
-        document.getElementById("popup").classList.remove("show");
-
-    }, 2200);
-}
+    let notes = [];
 
 
-function loadPendingNote() {
+    /* Get array of pending notes */
 
-    const container =
-        document.getElementById("notesContainer");
+    try {
 
-    const savedNote =
-        localStorage.getItem("noteHubPendingNote");
+        const data =
+            localStorage.getItem(
+                "pendingNotes"
+            );
 
-    if (!savedNote) {
 
-        container.innerHTML = `
-            <div class="empty">
-                <h3>No Pending Notes</h3>
-                <p>There are no notes waiting for approval.</p>
-            </div>
-        `;
+        if (data) {
 
-        return;
+            const parsed =
+                JSON.parse(data);
+
+
+            if (Array.isArray(parsed)) {
+
+                notes = parsed;
+
+            }
+
+        }
+
+    } catch(error) {
+
+        console.log(error);
+
     }
 
 
-    const note = JSON.parse(savedNote);
+    /*
+       Also check the single pending note
+    */
+
+    try {
+
+        const singleData =
+            localStorage.getItem(
+                "noteHubPendingNote"
+            );
 
 
-    container.innerHTML = `
+        if (singleData) {
 
-        <div class="note-card">
+            const singleNote =
+                JSON.parse(singleData);
 
-            <h3>📄 ${note.title}</h3>
 
-            <p>
-                <strong>Semester:</strong>
-                ${note.semester}
-                <br>
+            if (singleNote) {
 
-                <strong>Subject:</strong>
-                ${note.subject}
-                <br>
+                const exists =
+                    notes.some(function(note) {
 
-                <strong>File:</strong>
-                ${note.fileName}
-            </p>
+                        return String(note.id) ===
+                               String(singleNote.id);
 
-            <span class="status">
-                ${note.status}
-            </span>
+                    });
+
+
+                if (!exists) {
+
+                    notes.push(singleNote);
+
+                }
+
+            }
+
+        }
+
+    } catch(error) {
+
+        console.log(error);
+
+    }
+
+
+    return notes;
+
+}
+
+
+/* ==========================================
+   DISPLAY NOTES
+========================================== */
+
+function displayNotes() {
+
+    const container =
+        document.getElementById(
+            "notesGrid"
+        );
+
+
+    const notes =
+        getPendingNotes();
+
+
+    container.innerHTML = "";
+
+
+    if (notes.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    📚 No Notes Pending
+                </h3>
+
+                <p>
+                    There are currently no notes waiting for approval.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    notes.forEach(function(note, index) {
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "note-card";
+
+
+        card.innerHTML = `
+
+            <div class="note-icon">
+                📄
+            </div>
+
+
+            <h3>
+                ${escapeHTML(
+                    note.title ||
+                    "Untitled Note"
+                )}
+            </h3>
+
+
+            <div class="info">
+
+                <strong>
+                    Subject:
+                </strong>
+
+                ${escapeHTML(
+                    note.subject ||
+                    "Not specified"
+                )}
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Semester:
+                </strong>
+
+                ${escapeHTML(
+                    note.semester ||
+                    "Not specified"
+                )}
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    File:
+                </strong>
+
+                ${escapeHTML(
+                    note.fileName ||
+                    "No filename"
+                )}
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Status:
+                </strong>
+
+                <span class="status pending">
+                    Pending Approval
+                </span>
+
+            </div>
+
 
             <div class="buttons">
 
                 <button
-                    class="view"
-                    onclick="viewNote()">
-                    View
+                    class="view-btn"
+                    onclick="viewNote(${index})"
+                >
+                    👁 View
                 </button>
 
-                <button
-                    class="approve"
-                    onclick="approveNote()">
-                    Approve
-                </button>
 
                 <button
-                    class="reject"
-                    onclick="rejectNote()">
-                    Reject
+                    class="accept-btn"
+                    onclick="acceptNote(${index})"
+                >
+                    ✅ Accept
+                </button>
+
+
+                <button
+                    class="reject-btn"
+                    onclick="rejectNote(${index})"
+                >
+                    ❌ Reject
                 </button>
 
             </div>
 
-        </div>
-    `;
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
 }
 
 
-function viewNote() {
+/* ==========================================
+   VIEW NOTE
+========================================== */
 
-    showPopup(
-        "Note Information",
-        "File: " +
-        JSON.parse(
-            localStorage.getItem("noteHubPendingNote")
-        ).fileName
-    );
-}
+function viewNote(index) {
+
+    const notes =
+        getPendingNotes();
 
 
-function approveNote() {
+    const note =
+        notes[index];
 
-    const savedNote =
-        localStorage.getItem("noteHubPendingNote");
 
-    if (!savedNote) {
+    if (!note) {
+
+        showPopup(
+            "Error",
+            "The selected note could not be found."
+        );
+
         return;
+
     }
 
-    const note = JSON.parse(savedNote);
 
-    note.status = "Approved";
+    /*
+       THIS IS THE IMPORTANT PART.
+
+       The PDF must be stored in fileData
+       by share-notes.html.
+    */
+
+    const fileData =
+        note.fileData;
+
+
+    if (!fileData) {
+
+        showPopup(
+            "PDF Not Available",
+            "This note was uploaded without the actual PDF data. Please upload the PDF again."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        /*
+           Example:
+
+           data:application/pdf;base64,JVBER...
+        */
+
+        const commaIndex =
+            fileData.indexOf(",");
+
+
+        if (commaIndex === -1) {
+
+            showPopup(
+                "PDF Error",
+                "The saved PDF data is invalid."
+            );
+
+            return;
+
+        }
+
+
+        const header =
+            fileData.substring(
+                0,
+                commaIndex
+            );
+
+
+        const base64Data =
+            fileData.substring(
+                commaIndex + 1
+            );
+
+
+        /*
+           Find MIME type.
+        */
+
+        const mimeMatch =
+            header.match(
+                /data:([^;]+)/
+            );
+
+
+        const mimeType =
+            mimeMatch
+            ? mimeMatch[1]
+            : "application/pdf";
+
+
+        /*
+           Convert Base64 to binary.
+        */
+
+        const binary =
+            atob(base64Data);
+
+
+        const bytes =
+            new Uint8Array(
+                binary.length
+            );
+
+
+        for (
+            let i = 0;
+            i < binary.length;
+            i++
+        ) {
+
+            bytes[i] =
+                binary.charCodeAt(i);
+
+        }
+
+
+        /*
+           Create PDF Blob.
+        */
+
+        const blob =
+            new Blob(
+                [bytes],
+                {
+                    type: mimeType
+                }
+            );
+
+
+        /*
+           Create temporary PDF URL.
+        */
+
+        const pdfURL =
+            URL.createObjectURL(
+                blob
+            );
+
+
+        /*
+           Open PDF in new tab.
+        */
+
+        const newWindow =
+            window.open(
+                pdfURL,
+                "_blank"
+            );
+
+
+        if (!newWindow) {
+
+            showPopup(
+                "Popup Blocked",
+                "Please allow popups for this website and try again."
+            );
+
+            return;
+
+        }
+
+
+        /*
+           Give browser enough time
+           to load the PDF.
+        */
+
+        setTimeout(function() {
+
+            URL.revokeObjectURL(
+                pdfURL
+            );
+
+        }, 120000);
+
+
+    } catch(error) {
+
+        console.error(
+            "PDF OPEN ERROR:",
+            error
+        );
+
+
+        showPopup(
+            "Unable to Open PDF",
+            "The PDF could not be opened."
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   ACCEPT NOTE
+========================================== */
+
+function acceptNote(index) {
+
+    const notes =
+        getPendingNotes();
+
+
+    const note =
+        notes[index];
+
+
+    if (!note) {
+
+        return;
+
+    }
+
+
+    /*
+       Mark as approved.
+       IMPORTANT:
+       fileData is kept.
+    */
+
+    note.status =
+        "Approved";
+
+    note.approvalStatus =
+        "Approved";
+
+    note.approved =
+        true;
+
+
+    /*
+       Get existing approved notes.
+    */
+
+    let approvedNotes = [];
+
+
+    try {
+
+        const data =
+            localStorage.getItem(
+                "approvedNotes"
+            );
+
+
+        if (data) {
+
+            const parsed =
+                JSON.parse(data);
+
+
+            if (Array.isArray(parsed)) {
+
+                approvedNotes =
+                    parsed;
+
+            }
+
+        }
+
+    } catch(error) {
+
+        console.log(error);
+
+    }
+
+
+    /*
+       Avoid duplicate notes.
+    */
+
+    const existingIndex =
+        approvedNotes.findIndex(
+            function(existing) {
+
+                return String(existing.id) ===
+                       String(note.id);
+
+            }
+        );
+
+
+    if (existingIndex >= 0) {
+
+        approvedNotes[
+            existingIndex
+        ] = note;
+
+    } else {
+
+        approvedNotes.push(note);
+
+    }
+
+
+    /*
+       Save approved notes.
+       fileData is included here.
+    */
 
     localStorage.setItem(
-        "noteHubApprovedNote",
-        JSON.stringify(note)
+        "approvedNotes",
+        JSON.stringify(
+            approvedNotes
+        )
     );
 
-    localStorage.removeItem(
-        "noteHubPendingNote"
+
+    /*
+       Also save backup collection.
+    */
+
+    localStorage.setItem(
+        "adminApprovedNotes",
+        JSON.stringify(
+            approvedNotes
+        )
     );
+
+
+    /*
+       Remove from pending.
+    */
+
+    removePendingNote(
+        note.id
+    );
+
+
+    /*
+       Remove single pending item
+       if it is the same note.
+    */
+
+    try {
+
+        const single =
+            JSON.parse(
+                localStorage.getItem(
+                    "noteHubPendingNote"
+                )
+            );
+
+
+        if (
+            single &&
+            String(single.id) ===
+            String(note.id)
+        ) {
+
+            localStorage.removeItem(
+                "noteHubPendingNote"
+            );
+
+        }
+
+    } catch(error) {
+
+        console.log(error);
+
+    }
+
 
     showPopup(
-        "Approved",
+        "Note Accepted",
         "The note has been approved successfully."
     );
 
-    setTimeout(function() {
-        loadPendingNote();
-    }, 1000);
+
+    displayNotes();
+
 }
 
 
-function rejectNote() {
+/* ==========================================
+   REJECT NOTE
+========================================== */
 
-    localStorage.removeItem(
-        "noteHubPendingNote"
+function rejectNote(index) {
+
+    const notes =
+        getPendingNotes();
+
+
+    const note =
+        notes[index];
+
+
+    if (!note) {
+
+        return;
+
+    }
+
+
+    const confirmReject =
+        confirm(
+            "Are you sure you want to reject this note?"
+        );
+
+
+    if (!confirmReject) {
+
+        return;
+
+    }
+
+
+    removePendingNote(
+        note.id
     );
+
+
+    /*
+       Remove single pending note too.
+    */
+
+    try {
+
+        const single =
+            JSON.parse(
+                localStorage.getItem(
+                    "noteHubPendingNote"
+                )
+            );
+
+
+        if (
+            single &&
+            String(single.id) ===
+            String(note.id)
+        ) {
+
+            localStorage.removeItem(
+                "noteHubPendingNote"
+            );
+
+        }
+
+    } catch(error) {
+
+        console.log(error);
+
+    }
+
 
     showPopup(
-        "Rejected",
-        "The note has been rejected."
+        "Note Rejected",
+        "The note has been rejected successfully."
     );
 
-    setTimeout(function() {
-        loadPendingNote();
-    }, 1000);
+
+    displayNotes();
+
 }
 
 
-loadPendingNote();
+/* ==========================================
+   REMOVE PENDING NOTE
+========================================== */
+
+function removePendingNote(id) {
+
+    try {
+
+        let notes =
+            JSON.parse(
+                localStorage.getItem(
+                    "pendingNotes"
+                )
+            ) || [];
+
+
+        if (!Array.isArray(notes)) {
+
+            notes = [];
+
+        }
+
+
+        notes =
+            notes.filter(
+                function(note) {
+
+                    return String(note.id) !==
+                           String(id);
+
+                }
+            );
+
+
+        localStorage.setItem(
+            "pendingNotes",
+            JSON.stringify(
+                notes
+            )
+        );
+
+    } catch(error) {
+
+        console.log(error);
+
+    }
+
+}
+
+
+/* ==========================================
+   POPUP
+========================================== */
+
+function showPopup(
+    title,
+    message
+) {
+
+    document.getElementById(
+        "popupTitle"
+    ).textContent =
+        title;
+
+
+    document.getElementById(
+        "popupMessage"
+    ).textContent =
+        message;
+
+
+    document.getElementById(
+        "popup"
+    ).classList.add(
+        "show"
+    );
+
+
+    setTimeout(function() {
+
+        document.getElementById(
+            "popup"
+        ).classList.remove(
+            "show"
+        );
+
+    }, 3000);
+
+}
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+displayNotes();
 
 </script>
 
 </body>
+
 </html>
